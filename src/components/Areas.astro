@@ -1,0 +1,51 @@
+---
+import Section from './Section.astro';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import TextSlideUp from './TextSlideUp.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Section id="areas" class:list={'max-w-full md:max-w-1/2'}>
+  <h2 class="[&>div>p]:text-xl! md:[&>div>p]:text-2xl!">
+    <TextSlideUp text={t('areas.title')} class:list={'text-left text-8xl!'} />
+  </h2>
+
+  <ul class="list-disc pl-8 flex flex-col gap-8">
+    <li>
+      <p>Porodično pravo</p>
+      <a
+        href="https://www.paragraf.ba/propisi/republika-srpska/porodicni-zakon.html"
+        target="_blank"
+      >
+        ("Sl. glasnik RS", br. 17/2023, 27/2024, 20/2025 - odluka US i 61/2025)
+      </a>
+    </li>
+
+    <li>
+      <p>Krivicno pravo</p>
+      <a
+        href="https://www.paragraf.ba/propisi/republika-srpska/krivicni-zakon-republike-srpske.html"
+        target="_blank"
+      >
+        ("Sl. glasnik RS", br. 64/2017, 104/2018 - odluka US, 15/2021, 89/2021,
+        73/2023, "Sl. glasnik BiH", br. 9/2024 - odluka US BiH, "Sl. glasnik RS"
+        105/2024 - odluka US, 19/2025, "Sl. glasnik BiH", br. 14/2025 - odluka
+        US BiH i "Sl. glasnik RS", br. 31/2025, 85/2025 - odluka US, 25/2026 i
+        78/2026)
+      </a>
+    </li>
+
+    <li>
+      <p>Zakon o nasledivanju</p>
+      <a
+        href="https://www.paragraf.ba/propisi/republika-srpska/zakon-o-nasljedjivanju.html"
+        target="_blank"
+      >
+        ("Sl. glasnik RS", br. 1/2009, 55/2009 - ispr., 91/2016 28/2019 - odluka
+        US i 82/2019)
+      </a>
+    </li>
+  </ul>
+</Section>

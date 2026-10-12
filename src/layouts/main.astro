@@ -1,16 +1,45 @@
 ---
 import '../styles/global.css';
-const { content } = Astro.props;
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const { hideNav } = Astro.props;
 ---
 
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>{content.title}</title>
+    <title>{t('site.title')}</title>
+
+    <script is:inline>
+      (function () {
+        const getThemeByTime = () => {
+          const hour = new Date().getHours();
+          return hour >= 6 && hour < 18 ? 'light' : 'dark';
+        };
+        const savedTheme = localStorage.getItem('theme');
+        const theme = savedTheme ? savedTheme : getThemeByTime();
+        if (theme === 'dark') {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      })();
+    </script>
   </head>
   <body>
-    <slot />
+    <div class="grid min-h-screen grid-rows-[auto_1fr_auto] px-2">
+      <Header />
+      <main class="w-full max-w-300 mx-auto grow-3">
+        <slot />
+      </main>
+      <Footer />
+    </div>
   </body>
 </html>

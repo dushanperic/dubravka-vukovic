@@ -1,0 +1,63 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import LangPicker from './LangPicker.astro';
+import MenuIcon from './MenuIcon.astro';
+
+const pathname = Astro.url.pathname;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const getNavLinkStyle = (path: string) => {
+  return pathname.includes(path) ? 'active-link' : '';
+};
+---
+
+<script>
+  const btn = document.getElementById('nav-toggler');
+
+  btn?.addEventListener('click', (e) => {
+    const nav = document.getElementById('navigation');
+
+    nav?.classList.toggle('translate-x-full');
+  });
+</script>
+
+<MenuIcon id="nav-toggler" class:list={'z-9999 md:hidden'} />
+
+<nav>
+  <ul
+    id="navigation"
+    class="flex flex-col md:flex-row items-center justify-center ms:justify-end gap-4 fixed top-0 left-0 bottom-0 right-0 translate-x-full md:relative md:top-auto md:left-auto md:bottom-auto md:right-auto md:translate-none transition-all z-100"
+  >
+    <li>
+      <a
+        href={`/${lang}/areas`}
+        class:list={getNavLinkStyle('areas')}
+        class="leading-0 text-xl"
+      >
+        {t('nav.areas')}
+      </a>
+    </li>
+    <li>
+      <a
+        href={`/${lang}/about`}
+        class:list={getNavLinkStyle('about')}
+        class="leading-0 text-xl"
+      >
+        {t('nav.biography')}
+      </a>
+    </li>
+    <li>
+      <a
+        href={`/${lang}/contact`}
+        class:list={getNavLinkStyle('contact')}
+        class="leading-0 text-xl"
+      >
+        {t('nav.contact')}
+      </a>
+    </li>
+    <li>
+      <LangPicker />
+    </li>
+  </ul>
+</nav>

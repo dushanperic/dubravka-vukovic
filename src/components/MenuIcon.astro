@@ -1,0 +1,61 @@
+---
+interface Props {
+  id?: string;
+  class?: string;
+}
+
+const { id = 'menu-toggle', class: className } = Astro.props;
+---
+
+<button
+  id={id}
+  class:list={['group p-2 pr-0 focus:outline-none', className]}
+  aria-expanded="false"
+  aria-label="Toggle menu"
+>
+  <svg
+    class="w-12 h-12 fill-none stroke-current stroke-2 stroke-linecap-round"
+    viewBox="0 0 24 24"
+  >
+    <!-- Top Line -->
+    <path
+      class="origin-center transition-all duration-300 ease-in-out translate-y-[-6px] group-aria-expanded:translate-y-0 group-aria-expanded:rotate-45"
+      d="M4 12h16"></path>
+    <!-- Middle Line -->
+    <path
+      class="origin-center transition-all duration-300 ease-in-out group-aria-expanded:opacity-0 group-aria-expanded:scale-x-0"
+      d="M4 12h16"></path>
+    <!-- Bottom Line -->
+    <path
+      class="origin-center transition-all duration-300 ease-in-out translate-y-[6px] group-aria-expanded:translate-y-0 group-aria-expanded:-rotate-45"
+      d="M4 12h16"></path>
+  </svg>
+</button>
+
+<script>
+  // Scoped TypeScript execution for Astro
+  const initToggle = () => {
+    const toggleButtons = document.querySelectorAll(
+      '[aria-label="Toggle menu"]',
+    );
+
+    toggleButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const isExpanded = button.getAttribute('aria-expanded') === 'true';
+        button.setAttribute('aria-expanded', (!isExpanded).toString());
+
+        // Optional: Dispatch a custom event if other components need to know the state
+        const event = new CustomEvent('menuToggle', {
+          detail: { open: !isExpanded },
+        });
+        document.dispatchEvent(event);
+      });
+    });
+  };
+
+  // Runs on initial load
+  initToggle();
+
+  // Runs on View Transitions (if you use Astro's `<ViewTransitions />`)
+  document.addEventListener('astro:after-swap', initToggle);
+</script>
