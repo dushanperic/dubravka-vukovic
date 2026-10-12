@@ -7,16 +7,16 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<Section id="areas" class:list={'max-w-full md:max-w-2/3'}>
+<Section id="areas">
   <PageTitle text={t('areas.title')} />
 
-  <ul class="list-disc pl-8 flex flex-col gap-8">
+  <ul class="flex flex-col gap-4">
     <li>
       <p>Porodično pravo</p>
       <a
         href="https://www.paragraf.ba/propisi/republika-srpska/porodicni-zakon.html"
         target="_blank"
-        class="text-sm line-clamp-1"
+        class="block w-auto text-sm! line-clamp-1"
       >
         ("Sl. glasnik RS", br. 17/2023, 27/2024, 20/2025 - odluka US i 61/2025)
       </a>
@@ -27,7 +27,7 @@ const t = useTranslations(lang);
       <a
         href="https://www.paragraf.ba/propisi/republika-srpska/krivicni-zakon-republike-srpske.html"
         target="_blank"
-        class="text-sm line-clamp-1"
+        class="block w-auto text-sm! line-clamp-1"
       >
         ("Sl. glasnik RS", br. 64/2017, 104/2018 - odluka US, 15/2021, 89/2021,
         73/2023, "Sl. glasnik BiH", br. 9/2024 - odluka US BiH, "Sl. glasnik RS"
@@ -42,7 +42,7 @@ const t = useTranslations(lang);
       <a
         href="https://www.paragraf.ba/propisi/republika-srpska/zakon-o-nasljedjivanju.html"
         target="_blank"
-        class="text-sm line-clamp-1"
+        class="block w-auto text-sm! line-clamp-1"
       >
         ("Sl. glasnik RS", br. 1/2009, 55/2009 - ispr., 91/2016 28/2019 - odluka
         US i 82/2019)
