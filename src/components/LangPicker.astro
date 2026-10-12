@@ -23,7 +23,7 @@ const getLocalizedURL = (lang: string) => {
           {label}
         </a>
         <span
-          class="w-px h-3 bg-black"
+          class="w-px h-3 bg-(--text) dark:bg-(--dark-text)"
           class:list={
             index < Object.keys(languages)?.length - 1 ? 'block' : 'hidden'
           }
