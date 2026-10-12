@@ -1,1 +1,80 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+
+:root {
+  --background: #f7f7f7;
+  --text: #121212;
+  --dark-background: #121212;
+  --dark-text: #f7f7f7;
+}
+
+html {
+  scroll-behavior: smooth;
+  @apply bg-(--background);
+}
+
+html.dark {
+  @apply bg-(--dark-background);
+}
+
+html body {
+  scroll-behavior: smooth;
+  @apply text-(--text);
+}
+
+html.dark body {
+  scroll-behavior: smooth;
+  @apply text-(--dark-text);
+}
+
+html nav ul {
+  @apply bg-(--background);
+}
+
+html.dark nav ul {
+  @apply bg-(--dark-background);
+}
+
+main a {
+  @apply underline;
+}
+
+a {
+  @apply relative transition-colors  hover:text-blue-600
+   after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:bg-blue-600
+   after:scale-x-0 after:origin-bottom-right hover:after:scale-x-100 hover:after:origin-bottom-left
+   after:transition-transform after:ease-out;
+}
+
+.active-link {
+  @apply relative transition-colors  text-blue-600
+   after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:scale-100 after:bg-blue-600
+    after:origin-bottom-right
+   after:transition-transform after:ease-out;
+}
+
+p,
+li,
+span,
+label,
+input {
+  @apply text-xl;
+}
+
+.slide-in-text {
+  opacity: 0;
+}
+@theme {
+  --animate-slide-in: slide-in 1s ease-in-out forwards;
+
+  @keyframes slide-in {
+    0% {
+      opacity: 0;
+      transform: translateY(3rem);
+    }
+
+    100% {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}

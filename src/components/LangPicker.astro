@@ -1,0 +1,30 @@
+---
+import { languages } from '../i18n/ui';
+
+const currentPath = Astro.url.pathname;
+
+const getLocalizedURL = (lang: string) => {
+  const segments = currentPath.split('/').filter(Boolean);
+  const locale = segments[0];
+
+  return currentPath.replace(locale, lang);
+};
+---
+
+<ul class="flex items-center justify-center gap-1">
+  {
+    Object.entries(languages).map(([lang, label], index) => (
+      <li class="flex items-center justify-start gap-1 uppercase">
+        <a class="text-lg" href={getLocalizedURL(lang)}>
+          {label}
+        </a>
+        <span
+          class="w-px h-3 bg-black"
+          class:list={
+            index < Object.keys(languages)?.length - 1 ? 'block' : 'hidden'
+          }
+        />
+      </li>
+    ))
+  }
+</ul>

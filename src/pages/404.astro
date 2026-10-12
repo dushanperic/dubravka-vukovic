@@ -1,0 +1,28 @@
+---
+import Main from '../layouts/main.astro';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { LANG_PATHS } from '../config/lang';
+import Section from '../components/Section.astro';
+const currentPath = Astro.url.pathname;
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+let redirectUrl = '/';
+const paths = Object.values(LANG_PATHS);
+
+paths.forEach((lang) => {
+  if (currentPath.includes(lang)) {
+    redirectUrl += lang;
+  }
+});
+---
+
+<Main hideNav="true">
+  <Section class:list="text-center">
+    <p class="text-3xl mb-6">404</p>
+    <p class="text-sm mb-4">{currentPath}</p>
+    <a href=`${redirectUrl}`>{t('common.home')}</a>
+    <div class=""></div>
+  </Section>
+</Main>

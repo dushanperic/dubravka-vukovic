@@ -1,0 +1,129 @@
+---
+import Section from './Section.astro';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import TextSlideUp from './TextSlideUp.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<script>
+  const inputs = document.getElementsByTagName('input');
+  const textArea = document.getElementsByTagName('textarea');
+
+  const requestData: { [key: string]: string } = {
+    first_name: '',
+    last_name: '',
+    email: '',
+    subject: '',
+    message: '',
+  };
+  const handleInputChange = (event: Event) => {
+    const target = event.target as HTMLInputElement;
+
+    const { id, value } = target;
+    requestData[id] = value;
+  };
+
+  Array.from([...inputs, ...textArea])?.forEach((input) => {
+    input.addEventListener('input', (e) => handleInputChange(e));
+  });
+
+  const handleEmailClientRedirect = (event: SubmitEvent) => {
+    event.preventDefault();
+
+    const fullBody = `From:\n${requestData.first_name && requestData.first_name + ' '}${requestData.last_name && requestData.last_name + '\n'}${requestData.message && '\nMessage:\n' + requestData.message}`;
+
+    const mailtoLink = `mailto:dubravkavukovic@gmail.com?body=${encodeURIComponent(fullBody)}&subject=${encodeURIComponent(requestData.subject)}`;
+
+    const link = document.createElement('a');
+    link.href = mailtoLink;
+    link.setAttribute('target', '_blank');
+    link.click();
+  };
+
+  const form = document.querySelector('form');
+  form?.addEventListener('submit', handleEmailClientRedirect);
+</script>
+
+<Section id="contact">
+  <h2 class="[&>div>p]:text-xl! md:[&>div>p]:text-2xl!">
+    <TextSlideUp text={t('contact.title')} class:list={'text-left text-8xl!'} />
+  </h2>
+  <address class="mb-4">
+    <a href="tel:000000" class="inline-block">Tel: 066 / 12349876</a>
+    <span class="block">{t('contact.address.street')}</span>
+    <span class="block">{t('contact.address.city')}</span>
+    <span class="block">{t('contact.address.state')}</span>
+  </address>
+  <h2>{t('contact.form.title')}</h2>
+  <form action="" class="w-full max-w-full md:max-w-1/2 flex flex-col gap-2">
+    <div class="w-full flex flex-col gap-1">
+      <label for="first_name" class="mb-1 text-sm">
+        {t('contact.form.input.first_name.label')}
+      </label>
+      <input
+        type="text"
+        id="first_name"
+        name={t('contact.form.input.first_name.name')}
+        placeholder={t('contact.form.input.first_name.placeholder')}
+        class="w-full border not-placeholder-shown:border-none px-1 py-2 focus:pl-3 focus:py-2"
+        required
+      />
+    </div>
+
+    <div class="w-full flex flex-col gap-1">
+      <label for="last_name" class="mb-1 text-sm">
+        {t('contact.form.input.last_name.label')}
+      </label>
+      <input
+        type="text"
+        id="last_name"
+        name={t('contact.form.input.last_name.name')}
+        placeholder={t('contact.form.input.last_name.placeholder')}
+        class="w-full border not-placeholder-shown:border-none px-1 py-2 focus:pl-3 focus:py-2"
+        required
+      />
+    </div>
+
+    <div class="w-full flex flex-col gap-1">
+      <label for="email" class="mb-1 text-sm">
+        {t('contact.form.input.email.label')}
+      </label>
+      <input
+        type="text"
+        id="email"
+        name={t('contact.form.input.email.name')}
+        placeholder={t('contact.form.input.email.placeholder')}
+        class="w-full border not-placeholder-shown:border-none px-1 py-2 focus:pl-3 focus:py-2"
+      />
+    </div>
+
+    <div class="w-full flex flex-col gap-1">
+      <label for="subject" class="mb-1 text-sm">
+        {t('contact.form.input.subject.label')}
+      </label>
+      <input
+        type="text"
+        id="subject"
+        name={t('contact.form.input.subject.name')}
+        placeholder={t('contact.form.input.subject.placeholder')}
+        class="w-full border not-placeholder-shown:border-none px-1 py-2 focus:pl-3 focus:py-2"
+      />
+    </div>
+
+    <div class="w-full flex flex-col gap-1">
+      <label for="message" class="mb-1 text-sm">
+        {t('contact.form.input.message.label')}
+      </label>
+      <textarea
+        id="message"
+        name={t('contact.form.input.message.name')}
+        placeholder={t('contact.form.input.message.placeholder')}
+        class="w-full border not-placeholder-shown:border-none px-1 py-2 focus:pl-3 focus:py-2"
+        required></textarea>
+    </div>
+
+    <button type="submit" id="submit">Send via mail</button>
+  </form>
+</Section>
