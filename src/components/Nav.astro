@@ -1,5 +1,5 @@
 ---
-import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { getLangFromUrl, useTranslations, withBase } from '../i18n/utils';
 import LangPicker from './LangPicker.astro';
 import MenuIcon from './MenuIcon.astro';
 
@@ -31,7 +31,7 @@ const getNavLinkStyle = (path: string) => {
   >
     <li>
       <a
-        href={`/${lang}/areas`}
+        href={withBase(`/${lang}/areas`)}
         class:list={getNavLinkStyle('areas')}
         class="leading-0 text-xl"
       >
@@ -40,7 +40,7 @@ const getNavLinkStyle = (path: string) => {
     </li>
     <li>
       <a
-        href={`/${lang}/about`}
+        href={withBase(`/${lang}/about`)}
         class:list={getNavLinkStyle('about')}
         class="leading-0 text-xl"
       >
@@ -49,7 +49,7 @@ const getNavLinkStyle = (path: string) => {
     </li>
     <li>
       <a
-        href={`/${lang}/contact`}
+        href={withBase(`/${lang}/contact`)}
         class:list={getNavLinkStyle('contact')}
         class="leading-0 text-xl"
       >

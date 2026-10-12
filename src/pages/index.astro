@@ -1,4 +1,5 @@
-<meta
-  http-equiv="refresh"
-  content={`0;url=${import.meta.env.BASE_URL}/sr-Cyrl-RS/`}
-/>
+---
+import { withBase } from '../i18n/utils';
+---
+
+<meta http-equiv="refresh" content={`0;url=${withBase('/sr-Cyrl-RS/')}`} />
