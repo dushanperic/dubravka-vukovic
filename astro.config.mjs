@@ -5,6 +5,8 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://dushanperic.github.io',
+  base: '/dubravka-vukovic',
   vite: {
     plugins: [tailwindcss()],
   },

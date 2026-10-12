@@ -1,7 +1,7 @@
 ---
-import Section from './Section.astro';
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
-import TextSlideUp from './TextSlideUp.astro';
+import Section from './Section.astro';
+import PageTitle from './PageTitle.astro';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -47,15 +47,25 @@ const t = useTranslations(lang);
 </script>
 
 <Section id="contact">
-  <h2 class="[&>div>p]:text-xl! md:[&>div>p]:text-2xl!">
-    <TextSlideUp text={t('contact.title')} class:list={'text-left text-8xl!'} />
-  </h2>
-  <address class="mb-4">
-    <a href="tel:000000" class="inline-block">Tel: 066 / 12349876</a>
+  <PageTitle text={t('contact.title')} />
+
+  <address class="mb-4 flex flex-col gap-2">
     <span class="block">{t('contact.address.street')}</span>
     <span class="block">{t('contact.address.city')}</span>
     <span class="block">{t('contact.address.state')}</span>
+    <a
+      href="mailto:advokatdubravkavukovic@gmail.com"
+      target="_blank"
+      class="inline-block"
+    >
+      <span>advokatdubravkavukovic@gmail.com</span>
+    </a>
+    <a href="tel:+38765862731" class="inline-block">
+      <span>Tel: +387 65 862 731</span>
+    </a>
   </address>
+
+  <!-- 
   <h2>{t('contact.form.title')}</h2>
   <form action="" class="w-full max-w-full md:max-w-1/2 flex flex-col gap-2">
     <div class="w-full flex flex-col gap-1">
@@ -125,5 +135,5 @@ const t = useTranslations(lang);
     </div>
 
     <button type="submit" id="submit">Send via mail</button>
-  </form>
+  </form> -->
 </Section>

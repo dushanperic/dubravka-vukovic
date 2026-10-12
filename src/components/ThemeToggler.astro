@@ -1,7 +1,7 @@
 <button
   id="theme-toggle"
   aria-label="Toggle theme"
-  class="p-2 rounded-lg text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 transition-colors"
+  class="hidden p-2 rounded-lg text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 transition-colors"
 >
   <!-- Show sun icon in dark mode -->
   <span id="theme-toggle-light-icon" class="hidden dark:block text-xl">☀️</span>
@@ -14,12 +14,12 @@
     const button = document.getElementById('theme-toggle');
     const search = document.location.search;
 
-    console.log('test', search);
-
     if (!button) return;
 
-    if (search !== '?theme') {
-      button.classList.add('hidden');
+    if (search === '?theme') {
+      button.classList.remove('hidden');
+
+      return;
     }
 
     button.addEventListener('click', () => {
