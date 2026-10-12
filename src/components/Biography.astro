@@ -1,20 +1,16 @@
 ---
-import Section from './Section.astro';
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
-import TextSlideUp from './TextSlideUp.astro';
+import Section from './Section.astro';
+import PageTitle from './PageTitle.astro';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
 <Section id="biography">
-  <h2 class="[&>div>p]:text-xl! md:[&>div>p]:text-2xl!">
-    <TextSlideUp
-      text={t('biography.title')}
-      class:list={'text-left text-8xl!'}
-    />
-  </h2>
-  <p class="max-w-full md:max-w-1/2 whitespace-pre-line text-lg">
+  <PageTitle text={t('biography.title')} class:list={'text-red-400!'} />
+
+  <p class="max-w-full md:max-w-2/3 whitespace-pre-line text-lg">
     {t('biography.paragraph')}
   </p>
 </Section>
