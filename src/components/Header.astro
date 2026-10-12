@@ -1,5 +1,5 @@
 ---
-import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { getLangFromUrl, useTranslations, withBase } from '../i18n/utils';
 import Nav from './Nav.astro';
 import ThemeToggler from './ThemeToggler.astro';
 
@@ -10,7 +10,10 @@ const t = useTranslations(lang);
 <header class="w-full py-2 md:py-6 top-0 sticky z-9999">
   <div class="max-w-300 mx-auto">
     <div class="flex items-center justify-between">
-      <a href={`/${lang}`} class="text-2xl md:text-3xl font-normal z-9999">
+      <a
+        href={withBase(`/${lang}`)}
+        class="text-2xl md:text-3xl font-normal z-9999"
+      >
         <h1>{t('site.title')}</h1>
       </a>
       <div class="flex items-center justify-between">

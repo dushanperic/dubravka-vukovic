@@ -1,13 +1,17 @@
 ---
 import { languages } from '../i18n/ui';
+import { withBase } from '../i18n/utils';
 
-const currentPath = Astro.url.pathname;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const currentPath = Astro.url.pathname.startsWith(`${base}/`)
+  ? Astro.url.pathname.slice(base.length)
+  : Astro.url.pathname;
 
 const getLocalizedURL = (lang: string) => {
   const segments = currentPath.split('/').filter(Boolean);
   const locale = segments[0];
 
-  return currentPath.replace(locale, lang);
+  return withBase(currentPath.replace(`/${locale}`, `/${lang}`));
 };
 ---
 
