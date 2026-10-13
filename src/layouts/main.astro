@@ -7,7 +7,7 @@ import Footer from '../components/Footer.astro';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const { hideNav } = Astro.props;
+const { hideNav, pageTitle } = Astro.props;
 ---
 
 <html lang={lang}>
