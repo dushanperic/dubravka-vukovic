@@ -1,7 +1,8 @@
 ---
-import { getLangFromUrl, useTranslations } from '../i18n/utils';
-import Section from './Section.astro';
-import PageTitle from './PageTitle.astro';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import Section from '../Section.astro';
+import PageTitle from '../PageTitle.astro';
+import Main from '../../layouts/main.astro';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -30,23 +31,25 @@ const legalAreas = [
 ];
 ---
 
-<Section id="areas">
-  <PageTitle text={t('areas.title')} />
+<Main>
+  <Section id="areas">
+    <PageTitle text={t('areas.title')} />
 
-  <ul class="flex flex-col gap-4 max-w-full md:max-w-2/3">
-    {
-      legalAreas.map((item, index) => (
-        <li>
-          <p>{t(item.title)}</p>
-          <a
-            href={item.url}
-            target="_blank"
-            class="block w-auto text-sm! leading-loose line-clamp-1 break-all"
-          >
-            {item.info}
-          </a>
-        </li>
-      ))
-    }
-  </ul>
-</Section>
+    <ul class="flex flex-col gap-4 max-w-full md:max-w-2/3">
+      {
+        legalAreas.map((item, index) => (
+          <li>
+            <p>{t(item.title)}</p>
+            <a
+              href={item.url}
+              target="_blank"
+              class="block w-auto text-sm! leading-loose line-clamp-1 break-all pl-4"
+            >
+              {item.info}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </Section>
+</Main>
