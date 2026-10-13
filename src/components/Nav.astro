@@ -27,7 +27,7 @@ const getNavLinkStyle = (path: string) => {
 <nav>
   <ul
     id="navigation"
-    class="flex flex-col md:flex-row items-center justify-center ms:justify-end gap-4 md:gap-6 fixed top-0 left-0 bottom-0 right-0 translate-x-full md:relative md:top-auto md:left-auto md:bottom-auto md:right-auto md:translate-none transition-all z-100"
+    class="flex pl-4 lg:pl-0 flex-col md:flex-row items-start justify-center ms:justify-end gap-4 md:gap-6 fixed top-0 left-0 bottom-0 right-0 translate-x-full md:relative md:top-auto md:left-auto md:bottom-auto md:right-auto md:translate-none transition-all z-100"
   >
     <li>
       <a
@@ -56,7 +56,7 @@ const getNavLinkStyle = (path: string) => {
         {t('nav.contact')}
       </a>
     </li>
-    <li>
+    <li class="lg:pl-10">
       <LangPicker />
     </li>
   </ul>

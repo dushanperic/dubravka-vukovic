@@ -5,6 +5,8 @@
   --text: #121212;
   --dark-background: #121212;
   --dark-text: #f7f7f7;
+
+  --primary-brand: #5074e9;
 }
 
 html {
@@ -35,7 +37,7 @@ html.dark nav ul {
 }
 
 main a {
-  @apply underline hover:no-underline;
+  @apply underline decoration-(--primary-brand) decoration-2 hover:text-(--primary-brand) transition-colors;
 }
 
 a,
@@ -48,15 +50,15 @@ input {
 }
 
 nav a {
-  @apply relative transition-colors hover:text-blue-600
-   after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:bg-blue-600
+  @apply relative transition-colors hover:text-(--primary-brand)
+   after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:bg-(--primary-brand)
    after:scale-x-0 after:origin-bottom-right hover:after:scale-x-100 hover:after:origin-bottom-left
    after:transition-transform after:ease-out duration-300;
 }
 
 .active-link {
-  @apply relative transition-colors text-blue-600
-   after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:scale-100 after:bg-blue-600
+  @apply relative transition-colors text-(--primary-brand)
+   after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:scale-100 after:bg-(--primary-brand)
     after:origin-bottom-right
    after:transition-transform after:ease-out;
 }

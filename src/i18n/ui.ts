@@ -40,6 +40,10 @@ export const ui = {
     'contact.form.input.message.label': 'Message',
     'areas.title': 'Legal Areas',
     'common.home': 'Home',
+    'footer.copy': 'Copyright - © Advokat Dubravka Vuković',
+    'legal_area.family_law': 'Family Law',
+    'legal_area.criminal_law': 'Criminal Law',
+    'legal_area.inferitance_law': 'Law on Inheritance',
   },
   'sr-Cyrl-RS': {
     'site.title': 'Адвокат Дубравка Вуковић',
@@ -51,7 +55,7 @@ export const ui = {
     'nav.about': 'О нама',
     'biography.title': 'Биографија',
     'biography.paragraph':
-      'Кроз индивидуалан приступ сваком случају, циљ ми је да клијентима пружим јасне правне смјернице, поуздану подршку и заступање засновано на стручности, професионалној етици и повјерењу.\n\n2026 - Положен правосудни испит\n2026 - Чланство у Адвокатској комори Републике Српске\n2015 - Дугогодишње искуство у раду на предметима привредног и управног права. 2015',
+      'Кроз индивидуалан приступ сваком случају, циљ ми је да клијентима пружим јасне правне смјернице, поуздану подршку и заступање засновано на стручности, професионалној етици и повјерењу.\n\n2026 - Положен правосудни испит\n2026 - Чланство у Адвокатској комори Републике Српске\n2015 - Дугогодишње искуство у раду на предметима привредног и управног права.',
     'contact.title': 'Контакт',
     'contact.form.title': 'Пошаљите е-маил',
     'contact.address.street': 'Живојина Мишића бб',
@@ -74,6 +78,10 @@ export const ui = {
     'contact.form.input.message.label': 'Порука',
     'areas.title': 'Области',
     'common.home': 'Почетна',
+    'footer.copy': 'Copyright - © Адвокат Дубравка Вуковић',
+    'legal_area.family_law': 'Породично Право',
+    'legal_area.criminal_law': 'Кривично Право',
+    'legal_area.inferitance_law': 'Закон о наслеђивању',
   },
   'sr-Latn': {
     'site.title': 'Advokat Dubravka Vuković',
@@ -85,7 +93,7 @@ export const ui = {
     'nav.about': 'O nama',
     'biography.title': 'Biografija',
     'biography.paragraph':
-      'Kroz individualan pristup svakom slučaju, cilj mi je da klijentima pružim jasne pravne smjernice, pouzdanu podršku i zastupanje zasnovano na stručnosti, profesionalnoj etici i povjerenju.\n\n2026 - Položen pravosudni ispit\n2026 - Članstvo u Advokatskoj komori Republike Srpske\n2015 - Dugogodisnje iskustvo u radu na predmetima privrednog i upravnog prava. 2015',
+      'Kroz individualan pristup svakom slučaju, cilj mi je da klijentima pružim jasne pravne smjernice, pouzdanu podršku i zastupanje zasnovano na stručnosti, profesionalnoj etici i povjerenju.\n\n2026 - Položen pravosudni ispit\n2026 - Članstvo u Advokatskoj komori Republike Srpske\n2015 - Dugogodisnje iskustvo u radu na predmetima privrednog i upravnog prava.',
     'contact.title': 'Kontakt',
     'contact.form.title': 'Pošaljite e-mail',
     'contact.address.street': 'Živojina Mišića bb',
@@ -108,5 +116,9 @@ export const ui = {
     'contact.form.input.message.label': 'Poruka',
     'areas.title': 'Oblasti',
     'common.home': 'Početna',
+    'footer.copy': 'Copyright - © Advokat Dubravka Vuković',
+    'legal_area.family_law': 'Porodično Pravo',
+    'legal_area.criminal_law': 'Krivično pravo',
+    'legal_area.inferitance_law': 'Zakon o nasledjivanju',
   },
 } as const;
