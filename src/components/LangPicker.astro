@@ -18,12 +18,12 @@ const getLocalizedURL = (lang: string) => {
 <ul class="flex items-center justify-center gap-1">
   {
     Object.entries(languages).map(([lang, label], index) => (
-      <li class="flex items-center justify-start gap-1 uppercase">
-        <a class="text-lg" href={getLocalizedURL(lang)}>
+      <li class="flex items-center justify-center gap-1 uppercase">
+        <a class="text-lg!" href={getLocalizedURL(lang)}>
           {label}
         </a>
         <span
-          class="w-px h-3 bg-(--text) dark:bg-(--dark-text)"
+          class="w-px h-3 bg-(--text)"
           class:list={
             index < Object.keys(languages)?.length - 1 ? 'block' : 'hidden'
           }

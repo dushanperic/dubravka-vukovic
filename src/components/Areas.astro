@@ -5,48 +5,48 @@ import PageTitle from './PageTitle.astro';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+type AreaType =
+  | 'legal_area.family_law'
+  | 'legal_area.criminal_law'
+  | 'legal_area.inferitance_law';
+
+const legalAreas = [
+  {
+    title: 'legal_area.family_law' as AreaType,
+    url: 'https://www.paragraf.ba/propisi/republika-srpska/porodicni-zakon.html',
+    info: '("Sl. glasnik RS", br. 17/2023, 27/2024, 20/2025 - odluka US i 61/2025)',
+  },
+  {
+    title: 'legal_area.criminal_law' as AreaType,
+    url: 'https://www.paragraf.ba/propisi/republika-srpska/krivicni-zakon-republike-srpske.html',
+    info: '("Sl. glasnik RS", br. 64/2017, 104/2018 - odluka US, 15/2021, 89/2021, 73/2023, "Sl. glasnik BiH", br. 9/2024 - odluka US BiH, "Sl. glasnik RS" 105/2024 - odluka US, 19/2025, "Sl. glasnik BiH", br. 14/2025 - odluka US BiH i "Sl. glasnik RS", br. 31/2025, 85/2025 - odluka US, 25/2026 i 78/2026)',
+  },
+  {
+    title: 'legal_area.inferitance_law' as AreaType,
+    url: 'https://www.paragraf.ba/propisi/republika-srpska/zakon-o-nasljedjivanju.html',
+    info: '("Sl. glasnik RS", br. 64/2017, 104/2018 - odluka US, 15/2021, 89/2021, 73/2023, "Sl. glasnik BiH", br. 9/2024 - odluka US BiH, "Sl. glasnik RS" 105/2024 - odluka US, 19/2025, "Sl. glasnik BiH", br. 14/2025 - odluka US BiH i "Sl. glasnik RS", br. 31/2025, 85/2025 - odluka US, 25/2026 i 78/2026)',
+  },
+];
 ---
 
 <Section id="areas">
   <PageTitle text={t('areas.title')} />
 
-  <ul class="flex flex-col gap-4">
-    <li>
-      <p>Porodično pravo</p>
-      <a
-        href="https://www.paragraf.ba/propisi/republika-srpska/porodicni-zakon.html"
-        target="_blank"
-        class="block w-auto text-sm! line-clamp-1"
-      >
-        ("Sl. glasnik RS", br. 17/2023, 27/2024, 20/2025 - odluka US i 61/2025)
-      </a>
-    </li>
-
-    <li>
-      <p>Krivicno pravo</p>
-      <a
-        href="https://www.paragraf.ba/propisi/republika-srpska/krivicni-zakon-republike-srpske.html"
-        target="_blank"
-        class="block w-auto text-sm! line-clamp-1"
-      >
-        ("Sl. glasnik RS", br. 64/2017, 104/2018 - odluka US, 15/2021, 89/2021,
-        73/2023, "Sl. glasnik BiH", br. 9/2024 - odluka US BiH, "Sl. glasnik RS"
-        105/2024 - odluka US, 19/2025, "Sl. glasnik BiH", br. 14/2025 - odluka
-        US BiH i "Sl. glasnik RS", br. 31/2025, 85/2025 - odluka US, 25/2026 i
-        78/2026)
-      </a>
-    </li>
-
-    <li>
-      <p>Zakon o nasledivanju</p>
-      <a
-        href="https://www.paragraf.ba/propisi/republika-srpska/zakon-o-nasljedjivanju.html"
-        target="_blank"
-        class="block w-auto text-sm! line-clamp-1"
-      >
-        ("Sl. glasnik RS", br. 1/2009, 55/2009 - ispr., 91/2016 28/2019 - odluka
-        US i 82/2019)
-      </a>
-    </li>
+  <ul class="flex flex-col gap-4 max-w-full md:max-w-2/3">
+    {
+      legalAreas.map((item, index) => (
+        <li>
+          <p>{t(item.title)}</p>
+          <a
+            href={item.url}
+            target="_blank"
+            class="block w-auto text-sm! leading-loose line-clamp-1 break-all"
+          >
+            {item.info}
+          </a>
+        </li>
+      ))
+    }
   </ul>
 </Section>

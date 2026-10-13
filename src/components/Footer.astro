@@ -1,9 +1,17 @@
 ---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
 const year = new Date().getFullYear();
 ---
 
 <footer class="w-full text-center">
   <div class="max-w-300 mx-auto p-8">
-    <p class="text-xs">Copyright - &copy; {year}</p>
+    <span class="text-xs!">
+      {t('footer.copy')}
+      {year}
+    </span>
   </div>
 </footer>
