@@ -12,10 +12,10 @@ const t = useTranslations(lang);
     <div class="flex items-center justify-between">
       <a
         href={withBase(`/${lang}`)}
-        class="text-2xl! md:text-3xl! font-medium! z-9999 flex items-start lg:items-center justify-start gap-4"
+        class="text-2xl! md:text-3xl! font-medium! z-9999 flex items-start md:items-center justify-start gap-4"
       >
         <div
-          class="relative flex items-center justify-center rounded-full w-8 h-8 min-w-8 min-h-8 md:w-10 md:h-10 md:min-w-10 md:min-h-10 bg-(--primary-brand) text-white text-lg md:text-2xl leading-0"
+          class="relative flex items-center justify-center rounded-full w-6 h-6 min-w-6 min-h-6 md:w-10 md:h-10 md:min-w-10 md:min-h-10 text-(--primary-brand) text-base md:text-2xl leading-0 border-(--primary-brand) border-2"
         >
           <div
             class="absolute top-1/2 left-1/2 -translate-y-0.5 -translate-1/2"
@@ -25,7 +25,7 @@ const t = useTranslations(lang);
         </div>
         <h1 class="inline-block leading-none">{t('site.title')}</h1>
       </a>
-      <div class="flex items-center justify-between">
+      <div class="flex items-center justify-between self-end">
         <Nav />
         <ThemeToggler />
       </div>
