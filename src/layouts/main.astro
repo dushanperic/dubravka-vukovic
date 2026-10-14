@@ -3,20 +3,20 @@ import '../styles/global.css';
 import { getLangFromUrl, useTranslations, withBase } from '../i18n/utils';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import BaseHead from '../components/BaseHead.astro';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const { hideNav, pageTitle } = Astro.props;
+const { title, description, image } = Astro.props;
 ---
 
 <html lang={lang}>
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
-    <title>{t('site.title')}</title>
-
+    <BaseHead title={title} description={description} image={image} />
+    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+    <!-- <title>{t('site.title')}</title> -->
+    <!-- 
     <script is:inline>
       (function () {
         const getThemeByTime = () => {
@@ -31,7 +31,7 @@ const { hideNav, pageTitle } = Astro.props;
           document.documentElement.classList.remove('dark');
         }
       })();
-    </script>
+    </script> -->
   </head>
   <body>
     <div class="grid min-h-screen grid-rows-[auto_1fr_auto] px-4">
