@@ -1,0 +1,19 @@
+---
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import Section from '../Section.astro';
+import PageTitle from '../PageTitle.astro';
+import Main from '../../layouts/main.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Main>
+  <Section id="biography">
+    <PageTitle text={t('biography.title')} class:list={'text-red-400!'} />
+
+    <p class="max-w-full md:max-w-2/3 whitespace-pre-line text-lg">
+      {t('biography.paragraph')}
+    </p>
+  </Section>
+</Main>
