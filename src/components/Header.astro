@@ -8,14 +8,14 @@ const t = useTranslations(lang);
 ---
 
 <header class="w-full py-2 md:py-6 top-0 sticky z-9999">
-  <div class="max-w-300 mx-auto">
-    <div class="flex items-center justify-between">
+  <div class="max-w-400 mx-auto">
+    <div class="flex items-start md:items-start justify-between">
       <a
         href={withBase(`/${lang}`)}
-        class="text-2xl! md:text-3xl! font-medium! z-9999 flex items-center justify-start gap-2 md:gap-4"
+        class="text-2xl! md:text-3xl! font-medium! z-9999 flex items-start md:items-center justify-start gap-4 md:gap-8"
       >
         <div
-          class="relative flex items-center justify-center rounded-full w-6 h-6 min-w-6 min-h-6 md:w-10 md:h-10 md:min-w-10 md:min-h-10 text-(--primary-brand) text-base md:text-2xl leading-0 border-(--primary-brand) border-2"
+          class="relative flex items-center justify-center rounded-full w-10 h-10 min-w-10 min-h-10 leading-0 border-2"
         >
           <div
             class="absolute top-1/2 left-1/2 -translate-y-0.5 -translate-1/2"
@@ -23,7 +23,16 @@ const t = useTranslations(lang);
             §
           </div>
         </div>
-        <h1>{t('site.title')}</h1>
+        <h1
+          class="md:flex [&>span]:block! [&>span]:mr-2 [&>span]:text-xl! [&>span]:md:text-2xl! [&>span]:font-semibold!"
+        >
+          <span>
+            {t('site.prefix')}
+          </span>
+          <span>
+            {t('site.name')}
+          </span>
+        </h1>
       </a>
       <div class="flex items-center justify-between">
         <Nav />
