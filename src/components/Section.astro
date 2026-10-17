@@ -4,8 +4,8 @@ const { id } = Astro.props;
 const { ...attrs } = Astro.props;
 ---
 
-<section id={id} {...attrs} class="w-full">
-  <div class="w-full max-w-300 mx-auto">
+<section id={id} class="w-full" {...attrs}>
+  <div class="w-full max-w-400 mx-auto">
     <slot />
   </div>
 </section>

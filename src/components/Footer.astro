@@ -8,10 +8,17 @@ const year = new Date().getFullYear();
 ---
 
 <footer class="w-full text-left">
-  <div class="max-w-300 mx-auto py-6">
+  <div class="max-w-400 mx-auto py-6 flex items-center justify-between">
     <span class="text-xs!">
       {t('footer.copy')}
       {year}
     </span>
+    <div
+      class="relative flex items-center justify-center rounded-full w-10 h-10 min-w-10 min-h-10 leading-0 border-2"
+    >
+      <div class="absolute top-1/2 left-1/2 -translate-y-0.5 -translate-1/2">
+        §
+      </div>
+    </div>
   </div>
 </footer>

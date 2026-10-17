@@ -4,6 +4,8 @@ import { getLangFromUrl } from '../i18n/utils';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import BaseHead from '../components/BaseHead.astro';
+import { ClientRouter } from 'astro:transitions';
+import PageLoader from '../components/PageLoader.astro';
 
 const lang = getLangFromUrl(Astro.url);
 
@@ -12,22 +14,74 @@ const {
   description = 'Advokat Dubravka Vuković website',
   image,
 } = Astro.props;
+
+const anim = {
+  old: {
+    name: 'slideOutToLeft',
+    duration: '0.3s',
+    easing: 'ease-in-out',
+    fillMode: 'forwards',
+  },
+  new: {
+    name: 'slideInFromRight',
+    duration: '0.3s',
+    easing: 'ease-in-out',
+    fillMode: 'backwards',
+  },
+};
+
+const myCustomTransition = {
+  forwards: anim,
+  backwards: anim,
+};
 ---
 
 <html lang={lang}>
   <head>
     <BaseHead title={title} description={description} image={image} />
     <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+    <ClientRouter />
+    <script src="../scripts/nprogress-handler.ts"></script>
   </head>
   <body>
-    <div class="grid min-h-screen grid-rows-[auto_1fr_auto] px-4">
+    <div class="grid min-h-screen grid-rows-[auto_1fr_auto] px-4 md:px-8">
+      <PageLoader />
       <Header />
       <main
-        class="w-full max-w-300 mx-auto grow-3 overflow-y-scroll flex items-start justify-center mt-32"
+        id="main"
+        class="w-full max-w-400 mx-auto grow-3 overflow-y-scroll flex items-start justify-center mt-32"
+        transition:animate={myCustomTransition}
       >
         <slot />
       </main>
       <Footer />
     </div>
+    <script src="../scripts/loader.ts"></script>
+
+    <script>
+      // TypeScript interceptor managing routing state
+      const loader = document.getElementById('full-page-loader');
+
+      let loadingTimeout: ReturnType<typeof setTimeout>;
+
+      document.addEventListener('astro:before-preparation', () => {
+        // Only reveal overlay if loading takes longer than 200ms
+        loadingTimeout = setTimeout(() => {
+          document
+            .getElementById('full-page-loader')
+            ?.classList.remove('hidden');
+        }, 200);
+      });
+
+      document.addEventListener('astro:after-swap', () => {
+        clearTimeout(loadingTimeout);
+        document.getElementById('full-page-loader')?.classList.add('hidden');
+      });
+
+      // Fallback safety to ensure hidden status once rendering settles
+      document.addEventListener('astro:page-load', () => {
+        loader?.classList.add('hidden');
+      });
+    </script>
   </body>
 </html>

@@ -38,48 +38,52 @@ const { text, maxWidth = '600px', ...rest } = Astro.props;
   import gsap from 'gsap';
   import SplitType from 'split-type';
 
-  const textElements = document.querySelectorAll('.animate-lines');
+  document.addEventListener('astro:page-load', () => {
+    const textElements = document.querySelectorAll('.animate-lines');
 
-  textElements.forEach((element) => {
-    // 1. Instantly split text into lines
-    const splitText = new SplitType(element as HTMLElement, { types: 'lines' });
-    const lines = gsap.utils.toArray(element.querySelectorAll('.line'));
-
-    if (lines.length > 0) {
-      // 2. Prepare the initial hidden position of the split lines
-      gsap.set(lines, {
-        y: '100%',
-        opacity: 0,
+    textElements.forEach((element) => {
+      // 1. Instantly split text into lines
+      const splitText = new SplitType(element as HTMLElement, {
+        types: 'lines',
       });
+      const lines = gsap.utils.toArray(element.querySelectorAll('.line'));
 
-      // 3. REMOVE the loading class to let CSS visibility return to normal.
-      // Because the individual lines are now shifted down at y: '100%', the text remains hidden cleanly.
-      element.classList.remove('is-loading');
+      if (lines.length > 0) {
+        // 2. Prepare the initial hidden position of the split lines
+        gsap.set(lines, {
+          y: '100%',
+          opacity: 0,
+        });
 
-      // 4. Safely slide them up into view
-      gsap.to(lines, {
-        y: '0%',
-        opacity: 1,
-        duration: 0.8,
-        ease: 'power3.out',
-        stagger: 0.1,
+        // 3. REMOVE the loading class to let CSS visibility return to normal.
+        // Because the individual lines are now shifted down at y: '100%', the text remains hidden cleanly.
+        element.classList.remove('is-loading');
+
+        // 4. Safely slide them up into view
+        gsap.to(lines, {
+          y: '0%',
+          opacity: 1,
+          duration: 0.8,
+          ease: 'power3.out',
+          stagger: 0.1,
+        });
+      } else {
+        // Fallback: If SplitType fails or yields no lines, ensure the text doesn't stay hidden forever
+        element.classList.remove('is-loading');
+      }
+
+      // Handle resizing
+      let resizeTimer: number;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = window.setTimeout(() => {
+          splitText.split({ types: 'lines' });
+          const activeLines = gsap.utils.toArray(
+            element.querySelectorAll('.line'),
+          );
+          gsap.set(activeLines, { y: '0%', opacity: 1 });
+        }, 250);
       });
-    } else {
-      // Fallback: If SplitType fails or yields no lines, ensure the text doesn't stay hidden forever
-      element.classList.remove('is-loading');
-    }
-
-    // Handle resizing
-    let resizeTimer: number;
-    window.addEventListener('resize', () => {
-      clearTimeout(resizeTimer);
-      resizeTimer = window.setTimeout(() => {
-        splitText.split({ types: 'lines' });
-        const activeLines = gsap.utils.toArray(
-          element.querySelectorAll('.line'),
-        );
-        gsap.set(activeLines, { y: '0%', opacity: 1 });
-      }, 250);
     });
   });
 </script>
