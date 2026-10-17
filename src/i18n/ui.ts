@@ -8,7 +8,9 @@ export const defaultLang = 'sr-Cyrl-RS';
 
 export const ui = {
   en: {
-    'site.title': 'Lawyer Dubravka Vukovic',
+    'site.title': 'Lawyer Dubravka Vuković',
+    'site.prefix': 'Lawyer',
+    'site.name': 'Dubravka Vuković ',
     'landinng.title':
       'A professional attitude towards law implies more than knowledge of regulations. It requires commitment to each case, understanding the clients needs and consistency in protecting his rights and interests.',
     'nav.biography': 'Biography',
@@ -47,6 +49,8 @@ export const ui = {
   },
   'sr-Cyrl-RS': {
     'site.title': 'Адвокат Дубравка Вуковић',
+    'site.prefix': 'Адвокат',
+    'site.name': 'Дубравка Вуковић',
     'landinng.title':
       'Професионални однос према праву подразумијева више од познавања прописа. Захтијева посвећеност сваком предмету, разумијевање потреба клијента и досљедност у заштити његових права и интереса.',
     'nav.biography': 'Биографија',
@@ -85,6 +89,8 @@ export const ui = {
   },
   'sr-Latn': {
     'site.title': 'Advokat Dubravka Vuković',
+    'site.prefix': 'Advokat',
+    'site.name': 'Dubravka Vuković',
     'landinng.title':
       'Profesionalni odnos prema pravu podrazumijeva više od poznavanja propisa. Zahtijeva posvećenost svakom predmetu, razumijevanje potreba klijenta i dosljednost u zaštiti njegovih prava i interesa.',
     'nav.biography': 'Biografija',
