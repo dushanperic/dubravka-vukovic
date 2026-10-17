@@ -7,14 +7,19 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<header class="w-full py-2 md:py-6 top-0 sticky z-9999">
+<header class="w-full py-2 md:py-6 top-0 sticky z-10">
+  <div
+    id="nav-background"
+    class="fixed inset-0 backdrop-blur-xs invisible md:invisible"
+  >
+  </div>
   <div class="max-w-400 mx-auto">
     <div class="flex items-start md:items-start justify-between">
       <a
         href={withBase(`/${lang}`)}
-        class="text-2xl! md:text-3xl! font-medium! z-9999 flex items-start md:items-center justify-start gap-4 md:gap-8"
+        class="z-900 flex items-start md:items-center justify-start gap-4 md:gap-8"
       >
-        <div
+        <!-- <div
           class="relative flex items-center justify-center rounded-full w-10 h-10 min-w-10 min-h-10 leading-0 border-2"
         >
           <div
@@ -22,14 +27,12 @@ const t = useTranslations(lang);
           >
             §
           </div>
-        </div>
-        <h1
-          class="md:flex [&>span]:block! [&>span]:mr-2 [&>span]:text-xl! [&>span]:md:text-2xl! [&>span]:font-semibold!"
-        >
+        </div> -->
+        <h1 class="flex-clo md:flex-row[&>span]:mr-2">
           <span>
             {t('site.prefix')}
           </span>
-          <span>
+          <span class="whitespace-nowrap">
             {t('site.name')}
           </span>
         </h1>

@@ -35,15 +35,15 @@ const legalAreas = [
   <Section id="areas">
     <PageTitle text={t('areas.title')} />
 
-    <ul class="flex flex-col gap-4 max-w-full md:max-w-2/3">
+    <ul class="flex flex-col gap-6 max-w-full md:max-w-1/2">
       {
         legalAreas.map((item, index) => (
           <li>
-            <p>{t(item.title)}</p>
+            <p class="mb-1">{t(item.title)}</p>
             <a
               href={item.url}
               target="_blank"
-              class="block w-auto text-xs! leading-loose line-clamp-1 break-all pl-4"
+              class="block w-auto text-sm! leading-normal line-clamp-1 break-all"
             >
               {item.info}
             </a>

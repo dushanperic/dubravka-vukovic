@@ -10,7 +10,7 @@ export const ui = {
   en: {
     'site.title': 'Lawyer Dubravka Vuković',
     'site.prefix': 'Lawyer',
-    'site.name': 'Dubravka Vuković',
+    'site.name': 'Dubravka Vuković ',
     'landinng.title':
       'A professional attitude towards law implies more than knowledge of regulations. It requires commitment to each case, understanding the clients needs and consistency in protecting his rights and interests.',
     'nav.biography': 'Biography',
