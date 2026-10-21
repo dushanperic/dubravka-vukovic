@@ -1,5 +1,5 @@
 ---
-import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { getLangFromUrl, useTranslations, withBase } from '../i18n/utils';
 import AssociationLogoLink from './AssociationLogoLink.astro';
 
 const lang = getLangFromUrl(Astro.url);
@@ -8,20 +8,23 @@ const t = useTranslations(lang);
 const year = new Date().getFullYear();
 ---
 
-<footer class="w-full text-left">
+<footer class="w-full text-left pt-20">
   <div
-    class="max-w-400 mx-auto py-6 flex flex-col md:flex-row gap-4 items-start justify-between"
+    class="max-w-400 mx-auto py-6 flex flex-col md:flex-row gap-4 items-start md:items-end justify-between"
   >
-    <div class="flex flex-col">
+    <div class="flex flex-col w-full">
       <a href="tel:+38765/862-731" target="_blank" class="block">
         {t('footer.contact.phone')}
       </a>
       <a
         href="mailto:advokatdubravkavukovic@gmail.com"
         target="_blank"
-        class="block"
+        class="block w-87.5 md:w-auto truncate"
       >
         {t('footer.contact.email')}
+      </a>
+      <a href={withBase(`/${lang}/terms`)} class="mt-4">
+        {t('nav.terms')}
       </a>
     </div>
     <div>
