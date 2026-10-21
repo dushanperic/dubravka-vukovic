@@ -17,6 +17,7 @@ export const ui = {
     'nav.contact': 'Contact',
     'nav.areas': 'Legal Areas',
     'nav.about': 'About',
+    'nav.terms': 'Terms of use',
     'biography.title': 'Biography',
     'biography.paragraph':
       'Through an individual approach to each case, my goal is to provide clients with clear legal guidelines, reliable support and representation based on expertise, professional ethics and trust.\n\n2026 - Passed the bar exam\n2026 - Membership in the Bar Association of the Republic of Srpska\n2015 - Many years of experience in working on commercial and administrative law cases.',
@@ -48,6 +49,9 @@ export const ui = {
     'legal_area.family_law': 'Family Law',
     'legal_area.criminal_law': 'Criminal Law',
     'legal_area.inferitance_law': 'Law on Inheritance',
+    'terms_of_use.title': 'Terms of Use',
+    'terms_of_use.content':
+      'By using this website, you agree to the following Terms of Use.\n\nThe content of this website is provided for informational purposes only and does not constitute legal advice or establish an attorney-client relationship. For legal advice regarding a specific matter, please contact the attorney directly.\n\nThe website owner strives to ensure that all published information is accurate and up to date but does not guarantee its completeness and accepts no liability for any consequences arising from its use.\n\nThe content of this website, including texts and other materials, is protected by applicable copyright laws. Unauthorized copying, reproduction, or distribution of any content is prohibited.\n\nThis website uses Google Analytics to analyze website traffic and improve its content and user experience. When using the website, certain technical data and information about how the website is used may be collected. The website is provided through a web hosting service that may process technical data necessary for its operation and security.\n\nThe website owner reserves the right to amend these Terms of Use without prior notice.',
   },
   'sr-Cyrl-RS': {
     'site.title': 'Адвокат Дубравка Вуковић',
@@ -59,6 +63,7 @@ export const ui = {
     'nav.contact': 'Контакт',
     'nav.areas': 'Области',
     'nav.about': 'О нама',
+    'nav.terms': 'Услови коришћења',
     'biography.title': 'Биографија',
     'biography.paragraph':
       'Кроз индивидуалан приступ сваком случају, циљ ми је да клијентима пружим јасне правне смјернице, поуздану подршку и заступање засновано на стручности, професионалној етици и повјерењу.\n\n2026 - Положен правосудни испит\n2026 - Чланство у Адвокатској комори Републике Српске\n2015 - Дугогодишње искуство у раду на предметима привредног и управног права.',
@@ -90,6 +95,9 @@ export const ui = {
     'legal_area.family_law': 'Породично Право',
     'legal_area.criminal_law': 'Кривично Право',
     'legal_area.inferitance_law': 'Закон о наслеђивању',
+    'terms_of_use.title': 'Правила коришћења',
+    'terms_of_use.content':
+      ' Коришћењем ове интернет странице прихватате наведена правила коришћења.\n\nСадржај сајта служи искључиво у информативне сврхе и не представља правни савет нити успоставља однос између адвоката и клијента. За правни савет у вези са конкретним случајем потребно је директно контактирати адвоката.\n\nВласник сајта настоји да обезбеди тачност и ажурност објављених информација, али не гарантује њихову потпуност нити сноси одговорност за евентуалне последице настале њиховим коришћењем.\n\nСадржај сајта, укључујући текстове и друге материјале, заштићен је у складу са важећим прописима о ауторским правима. Није дозвољено његово неовлашћено копирање, умножавање или дистрибуција.\n\nСајт користи Google Analytics ради анализе посећености и унапређења садржаја и корисничког искуства. Приликом коришћења сајта могу се прикупљати одређени технички подаци и информације о начину коришћења странице. Сајт се пружа путем услуге за хостовање интернет садржаја, која може обрађивати техничке податке неопходне за функционисање и безбедност сајта.\n\nВласник сајта задржава право измене ових правила без претходне најаве.',
   },
   'sr-Latn': {
     'site.title': 'Advokat Dubravka Vuković',
@@ -101,6 +109,7 @@ export const ui = {
     'nav.contact': 'Kontakt',
     'nav.areas': 'Oblasti',
     'nav.about': 'O nama',
+    'nav.terms': 'Uslovi korišćenja',
     'biography.title': 'Biografija',
     'biography.paragraph':
       'Kroz individualan pristup svakom slučaju, cilj mi je da klijentima pružim jasne pravne smjernice, pouzdanu podršku i zastupanje zasnovano na stručnosti, profesionalnoj etici i povjerenju.\n\n2026 - Položen pravosudni ispit\n2026 - Članstvo u Advokatskoj komori Republike Srpske\n2015 - Dugogodisnje iskustvo u radu na predmetima privrednog i upravnog prava.',
@@ -132,5 +141,8 @@ export const ui = {
     'legal_area.family_law': 'Porodično Pravo',
     'legal_area.criminal_law': 'Krivično pravo',
     'legal_area.inferitance_law': 'Zakon o nasledjivanju',
+    'terms_of_use.title': 'Pravila korišćenja',
+    'terms_of_use.content':
+      'Korišćenjem ove internet stranice prihvatate navedena pravila korišćenja.\n\nSadržaj sajta služi isključivo u informativne svrhe i ne predstavlja pravni savet niti uspostavlja odnos između advokata i klijenta. Za pravni savet u vezi sa konkretnim slučajem potrebno je direktno kontaktirati advokata.\n\nVlasnik sajta nastoji da obezbedi tačnost i ažurnost objavljenih informacija, ali ne garantuje njihovu potpunost niti snosi odgovornost za eventualne posledice nastale njihovim korišćenjem.\n\nSadržaj sajta, uključujući tekstove i druge materijale, zaštićen je u skladu sa važećim propisima o autorskim pravima. Nije dozvoljeno njegovo neovlašćeno kopiranje, umnožavanje ili distribucija.\n\Sajt koristi Google Analytics radi analize posećenosti i unapređenja sadržaja i korisničkog iskustva. Prilikom korišćenja sajta mogu se prikupljati određeni tehnički podaci i informacije o načinu korišćenja stranice. Sajt se pruža putem usluge za hostovanje internet sadržaja, koja može obrađivati tehničke podatke neophodne za funkcionisanje i bezbednost sajta.\n\nVlasnik sajta zadržava pravo izmene ovih pravila bez prethodne najave.',
   },
 } as const;
