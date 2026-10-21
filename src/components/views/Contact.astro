@@ -3,6 +3,7 @@ import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 import Section from '../Section.astro';
 import PageTitle from '../PageTitle.astro';
 import Main from '../../layouts/main.astro';
+import { pageTransition } from '../../config/page-transitions';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -48,7 +49,7 @@ const t = useTranslations(lang);
   form?.addEventListener('submit', handleEmailClientRedirect);
 </script> -->
 <Main title={`${t('contact.title')} | ${t('site.title')}`}>
-  <Section id="contact">
+  <Section id="contact" transition:animate={pageTransition}>
     <PageTitle text={t('contact.title')} />
 
     <address class="mb-4 flex flex-col gap-2">
