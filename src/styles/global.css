@@ -11,7 +11,6 @@
 
 html {
   scroll-behavior: smooth;
-  @apply bg-(--background);
 }
 
 html.dark {
@@ -20,7 +19,7 @@ html.dark {
 
 html body {
   scroll-behavior: smooth;
-  @apply text-(--text);
+  @apply text-(--text) bg-(--background);
 }
 
 html.dark body {
@@ -101,6 +100,7 @@ nav a {
   pointer-events: none;
 }
 
+/* Page transition animations */
 @keyframes slideInFromRight {
   from {
     opacity: 0;

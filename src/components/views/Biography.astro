@@ -3,13 +3,14 @@ import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 import Section from '../Section.astro';
 import PageTitle from '../PageTitle.astro';
 import Main from '../../layouts/main.astro';
+import { pageTransition } from '../../config/page-transitions';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<Main>
-  <Section id="biography">
+<Main title={`${t('biography.title')} | ${t('site.title')}`}>
+  <Section id="biography" transition:animate={pageTransition}>
     <PageTitle text={t('biography.title')} />
 
     <p class="max-w-full md:max-w-1/2 whitespace-pre-line">
