@@ -1,0 +1,30 @@
+---
+
+---
+
+<background-overlay
+  class="fixed inset-0 backdrop-blur-xs invisible md:invisible z-10"
+></background-overlay>
+
+<script>
+  import { eventKey } from '../config/events';
+
+  class BackgroundOverlay extends HTMLElement {
+    connectedCallback() {
+      this.addEventListener(eventKey.NAV_TOGGLE, () =>
+        this.handleBackgroundChange(),
+      );
+
+      document.addEventListener(eventKey.NAV_TOGGLE, () => {
+        this.handleBackgroundChange();
+      });
+    }
+
+    private handleBackgroundChange() {
+      this.classList.toggle('invisible');
+    }
+  }
+
+  if (!customElements.get('background-overlay'))
+    customElements.define('background-overlay', BackgroundOverlay);
+</script>
