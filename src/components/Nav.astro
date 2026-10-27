@@ -1,7 +1,6 @@
 ---
 import { getLangFromUrl, useTranslations, withBase } from '../i18n/utils';
 import LangPicker from './LangPicker.astro';
-import MenuIcon from './MenuIcon.astro';
 
 const pathname = Astro.url.pathname;
 const lang = getLangFromUrl(Astro.url);
@@ -12,57 +11,176 @@ const getNavLinkStyle = (path: string) => {
 };
 ---
 
-<script>
-  document.addEventListener('astro:page-load', () => {
-    const btn = document.getElementById('nav-toggler');
-    const background = document.getElementById('nav-background');
-    const main = document.getElementById('main');
-    btn?.addEventListener('click', (e) => {
-      const nav = document.getElementById('navigation');
-
-      nav?.classList.toggle('translate-x-full');
-      background?.classList.toggle('invisible');
-      main?.classList.toggle('opacity-40');
-    });
-  });
-</script>
-
-<MenuIcon id="nav-toggler" class:list={'z-9999 md:hidden ml-4 md:ml-0'} />
-
-<nav>
-  <ul
-    id="navigation"
-    class="flex pl-4 lg:pl-0 flex-col md:flex-row items-start justify-center ms:justify-end gap-4 md:gap-6 bg-(--background) fixed top-0 left-1/2 bottom-0 right-0 translate-x-full md:relative md:top-auto md:left-auto md:bottom-auto md:right-auto md:translate-none transition-all z-100"
+<navigation-controller>
+  <nav-toggler
+    id="nav-toggler"
+    class="z-999999 relative w-auto h-auto md:hidden"
   >
-    <li class="">
-      <a
-        href={withBase(`/${lang}/areas`)}
-        class:list={getNavLinkStyle('areas')}
-        class="leading-0"
+    <button type="button" aria-expanded="false" class="group">
+      <svg
+        class="w-8 h-8 fill-none stroke-current stroke-2 stroke-linecap-round"
+        viewBox="0 0 24 24"
       >
-        {t('nav.areas')}
-      </a>
-    </li>
-    <li class="">
-      <a
-        href={withBase(`/${lang}/about`)}
-        class:list={getNavLinkStyle('about')}
-        class="leading-0"
+        <!-- Top Line -->
+        <path
+          class="origin-center transition-all duration-300 ease-in-out translate-y-1.5 group-aria-expanded:translate-y-0 group-aria-expanded:rotate-45"
+          d="M4 12h16"></path>
+        <!-- Middle Line -->
+        <path
+          class="origin-center transition-all duration-300 ease-in-out group-aria-expanded:opacity-0 group-aria-expanded:scale-x-0"
+          d="M4 12h16"></path>
+        <!-- Bottom Line -->
+        <path
+          class="origin-center transition-all duration-300 ease-in-out translate-y-1.5 group-aria-expanded:translate-y-0 group-aria-expanded:-rotate-45"
+          d="M4 12h16"></path>
+      </svg>
+    </button>
+  </nav-toggler>
+
+  <nav-menu
+    data-state="closed"
+    class="data-[state=open]:opacity-100 data-[state=open]:translate-0 data-[state=closed]:opacity-0 data-[state=closed]:md:opacity-100 data-[state=closed]:translate-x-full bg-(--background) fixed top-0 left-1/2 bottom-0 right-0 md:relative md:bg-transparent md:top-auto md:left-auto md:bottom-auto md:right-auto md:translate-none transition-all shadow-lg md:shadow-none"
+  >
+    <nav class="h-full flex items-center justify-start">
+      <ul
+        class="flex pl-4 lg:pl-0 flex-col md:flex-row items-start justify-center md:justify-end gap-4 md:gap-6 z-100"
       >
-        {t('nav.biography')}
-      </a>
-    </li>
-    <li class="">
-      <a
-        href={withBase(`/${lang}/contact`)}
-        class:list={getNavLinkStyle('contact')}
-        class="leading-0"
-      >
-        {t('nav.contact')}
-      </a>
-    </li>
-    <li class="lg:pl-10 pt-8 lg:pt-0">
-      <LangPicker />
-    </li>
-  </ul>
-</nav>
+        <li class="">
+          <a
+            href={withBase(`/${lang}/areas`)}
+            class:list={getNavLinkStyle('areas')}
+            class="leading-0"
+          >
+            {t('nav.areas')}
+          </a>
+        </li>
+        <li class="">
+          <a
+            href={withBase(`/${lang}/about`)}
+            class:list={getNavLinkStyle('about')}
+            class="leading-0"
+          >
+            {t('nav.biography')}
+          </a>
+        </li>
+        <li class="">
+          <a
+            href={withBase(`/${lang}/contact`)}
+            class:list={getNavLinkStyle('contact')}
+            class="leading-0"
+          >
+            {t('nav.contact')}
+          </a>
+        </li>
+        <li class="lg:pl-10 pt-8 md:pt-0">
+          <LangPicker />
+        </li>
+      </ul>
+    </nav>
+  </nav-menu>
+</navigation-controller>
+
+<script>
+  import { eventKey } from '../config/events';
+  import { dispatchCustomEvent } from '../utils/events';
+
+  class NavController extends HTMLElement {
+    private isOpen = false;
+    private breakpoint = 768;
+
+    connectedCallback() {
+      this.breakpoint = Number(this.dataset.breakpoint) || 768;
+
+      document.addEventListener(eventKey.NAV_TOGGLE, this.onStateMutation);
+      window.addEventListener('resize', this.onViewportResize);
+      window.addEventListener('keydown', this.onKeyboardTrap);
+    }
+
+    disconnectCallback() {
+      document.removeEventListener(eventKey.NAV_TOGGLE, this.onStateMutation);
+      window.removeEventListener('resize', this.onViewportResize);
+      window.removeEventListener('keydown', this.onKeyboardTrap);
+    }
+
+    private onStateMutation(e: DocumentEventMap['site:navigation-toggle']) {
+      this.isOpen = e.detail.isOpen;
+    }
+
+    private onViewportResize() {
+      if (window.innerWidth >= this.breakpoint) {
+        dispatchCustomEvent(eventKey.NAV_TOGGLE, {
+          isOpen: true,
+          source: 'resize',
+        });
+      }
+
+      if (window.innerWidth <= this.breakpoint && this.isOpen) {
+        dispatchCustomEvent(eventKey.NAV_TOGGLE, {
+          isOpen: false,
+          source: 'resize',
+        });
+      }
+    }
+
+    private onKeyboardTrap(e: KeyboardEvent) {
+      if (e.key === 'Escape') {
+        dispatchCustomEvent(eventKey.NAV_TOGGLE, {
+          isOpen: false,
+          source: 'escape',
+        });
+      }
+    }
+  }
+
+  class NavTrigger extends HTMLElement {
+    private btn: HTMLButtonElement | null = null;
+    private state: boolean = false;
+
+    connectedCallback() {
+      this.btn = this.querySelector('button');
+
+      this.btn?.addEventListener('click', this.dispatchToggle);
+      document.addEventListener(eventKey.NAV_TOGGLE, this.syncTriggerUi);
+    }
+
+    disconnectCallback() {
+      this.btn?.removeEventListener('click', this.dispatchToggle);
+      document.removeEventListener(eventKey.NAV_TOGGLE, this.syncTriggerUi);
+    }
+
+    private dispatchToggle = () => {
+      this.state = !this.state;
+      dispatchCustomEvent(eventKey.NAV_TOGGLE, {
+        isOpen: this.state,
+        source: 'trigger',
+      });
+    };
+
+    private syncTriggerUi = (e: DocumentEventMap['site:navigation-toggle']) => {
+      this.state = e.detail.isOpen;
+      this.btn?.setAttribute('aria-expanded', String(this.state));
+    };
+  }
+
+  class NavMenu extends HTMLElement {
+    connectedCallback() {
+      document.addEventListener(eventKey.NAV_TOGGLE, this.syncMenuUI);
+    }
+    discconnectedCallback() {
+      document.removeEventListener(eventKey.NAV_TOGGLE, this.syncMenuUI);
+    }
+
+    private syncMenuUI = (e: DocumentEventMap['site:navigation-toggle']) => {
+      this.dataset.state = e.detail.isOpen ? 'open' : 'closed';
+    };
+  }
+
+  if (!customElements.get('navigation-controller'))
+    customElements.define('navigation-controller', NavController);
+
+  if (!customElements.get('nav-toggler'))
+    customElements.define('nav-toggler', NavTrigger);
+
+  if (!customElements.get('nav-menu'))
+    customElements.define('nav-menu', NavMenu);
+</script>
