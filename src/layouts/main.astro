@@ -24,15 +24,18 @@ const {
     <ClientRouter />
     <script src="../scripts/nprogress-handler.ts"></script>
   </head>
-  <body class="grid min-h-screen grid-rows-[auto_1fr_auto]">
+  <!-- <body class="grid min-h-screen grid-rows-[auto_1fr_auto]"> -->
+  <body>
     <PageLoader />
     <BackgroundOverlay />
     <Header />
     <main
       id="main"
-      class="w-full max-w-400 mx-auto grow-3 overflow-y-scroll flex items-start justify-center mt-32 px-4 md:px-8 bg-(--background)"
+      class="w-full mx-auto min-h-[calc(100vh-54px)] md:min-h-[calc(100vh-84px)] mb-118 lg:mb-82 px-4 md:px-8 bg-(--background) z-10 pb-20"
     >
-      <slot />
+      <div class="w-full h-full max-w-400 mx-auto mt-15 md:mt-21">
+        <slot />
+      </div>
     </main>
     <Footer />
     <script src="../scripts/global-mediator.ts"></script>
