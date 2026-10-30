@@ -1,10 +1,10 @@
 ---
 const { id } = Astro.props;
 
-const { ...attrs } = Astro.props;
+const { cls } = Astro.props;
 ---
 
-<section id={id} class="w-full" {...attrs}>
+<section id={id} class="w-full" class:list={cls}>
   <div class="w-full max-w-400 mx-auto">
     <slot />
   </div>

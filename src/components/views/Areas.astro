@@ -3,7 +3,6 @@ import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 import Section from '../Section.astro';
 import PageTitle from '../PageTitle.astro';
 import Main from '../../layouts/main.astro';
-import { pageTransition } from '../../config/page-transitions';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -33,10 +32,66 @@ const legalAreas = [
 ---
 
 <Main title={`${t('areas.title')} | ${t('site.title')}`}>
-  <Section id="areas" transition:animate={pageTransition}>
+  <Section id="areas">
     <PageTitle text={t('areas.title')} />
 
-    <ul class="flex flex-col gap-6 max-w-full md:max-w-1/2">
+    <ul class="flex flex-col gap-6 max-w-full md:max-w-2/3 lg:max-w-1/2">
+      {
+        legalAreas.map((item, index) => (
+          <li>
+            <p class="mb-1">{t(item.title)}</p>
+            <a
+              href={item.url}
+              target="_blank"
+              class="block w-auto text-sm! leading-normal line-clamp-1 break-all"
+            >
+              {item.info}
+            </a>
+          </li>
+        ))
+      }
+      {
+        legalAreas.map((item, index) => (
+          <li>
+            <p class="mb-1">{t(item.title)}</p>
+            <a
+              href={item.url}
+              target="_blank"
+              class="block w-auto text-sm! leading-normal line-clamp-1 break-all"
+            >
+              {item.info}
+            </a>
+          </li>
+        ))
+      }
+      {
+        legalAreas.map((item, index) => (
+          <li>
+            <p class="mb-1">{t(item.title)}</p>
+            <a
+              href={item.url}
+              target="_blank"
+              class="block w-auto text-sm! leading-normal line-clamp-1 break-all"
+            >
+              {item.info}
+            </a>
+          </li>
+        ))
+      }
+      {
+        legalAreas.map((item, index) => (
+          <li>
+            <p class="mb-1">{t(item.title)}</p>
+            <a
+              href={item.url}
+              target="_blank"
+              class="block w-auto text-sm! leading-normal line-clamp-1 break-all"
+            >
+              {item.info}
+            </a>
+          </li>
+        ))
+      }
       {
         legalAreas.map((item, index) => (
           <li>
