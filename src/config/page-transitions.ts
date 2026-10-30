@@ -1,19 +1,21 @@
-const pageTransitionAnimation = {
+import type { TransitionAnimationPair } from 'astro';
+
+const curtainAnimation: TransitionAnimationPair = {
   old: {
-    name: 'slideOutToLeft',
-    duration: '0.3s',
-    easing: 'ease-in-out',
-    fillMode: 'forwards',
+    name: 'curtainUpOut',
+    duration: '0.6s',
+    easing: 'cubic-bezier(0.76, 0, 0.24, 1)',
+    fillMode: 'both',
   },
   new: {
-    name: 'slideInFromRight',
-    duration: '0.3s',
-    easing: 'ease-in-out',
-    fillMode: 'backwards',
+    name: 'curtainUpIn',
+    duration: '0.6s',
+    easing: 'cubic-bezier(0.76, 0, 0.24, 1)',
+    fillMode: 'both',
   },
 };
 
-export const pageTransition = {
-  forwards: pageTransitionAnimation,
-  backwards: pageTransitionAnimation,
+export const curtainWipe = {
+  forwards: curtainAnimation,
+  backwards: curtainAnimation,
 };

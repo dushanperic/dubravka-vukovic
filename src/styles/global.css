@@ -6,7 +6,7 @@
   --dark-background: #121212;
   --dark-text: #f7f7f7;
 
-  --primary-brand: #5074e9;
+  --primary-brand: #0067a0;
 }
 
 html {
@@ -27,7 +27,7 @@ html.dark body {
   @apply text-(--dark-text);
 }
 
-html nav ul {
+html header nav ul {
   @apply bg-(--background);
 }
 
@@ -49,10 +49,10 @@ input,
 h1,
 h3,
 address {
-  @apply text-lg md:text-xl xl:text-2xl leading-normal font-normal;
+  @apply text-base md:text-lg xl:text-lg leading-normal font-normal;
 }
 
-nav a {
+header nav a {
   @apply relative transition-colors
    after:absolute after:-bottom-2 after:left-0 after:h-0.5 after:w-full after:bg-(--primary-brand)
    after:scale-x-0 after:origin-bottom-right hover:after:scale-x-100 hover:after:origin-bottom-left
@@ -66,21 +66,24 @@ nav a {
    after:transition-transform after:ease-out;
 }
 
-.slide-in-text {
-  opacity: 0;
-}
 @theme {
-  --animate-slide-in: slide-in 1s ease-in-out forwards;
+  --animate-wipe-up: wipeUp 1000ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-wipe-down: wipeDown 800ms cubic-bezier(0.7, 0, 0.84, 0) both;
 
-  @keyframes slide-in {
+  @keyframes wipeUp {
     0% {
-      opacity: 0;
-      transform: translateY(3rem);
+      transform: translateY(100%);
     }
-
     100% {
-      opacity: 1;
-      transform: none;
+      transform: translateY(0%);
+    }
+  }
+  @keyframes wipeDown {
+    0% {
+      transform: translateY(0%);
+    }
+    100% {
+      transform: translateY(-100%);
     }
   }
 }
@@ -102,24 +105,20 @@ nav a {
 }
 
 /* Page transition animations */
-@keyframes slideInFromRight {
-  from {
-    opacity: 0;
-    translate: 50px 0;
-  }
-  to {
-    opacity: 1;
-    translate: 0 0;
-  }
+
+.curtain-up {
+  animation: var(--animate-wipe-up);
+}
+.curtain-down {
+  animation: var(--animate-wipe-down);
+}
+.curtain-reset {
+  transform: translateY(100%) !important;
 }
 
-@keyframes slideOutToLeft {
-  from {
-    opacity: 1;
-    translate: 0 0;
-  }
-  to {
-    opacity: 0;
-    translate: -50px 0;
-  }
+/* Clear default blending conflicts to prevent background ghosting lines */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none !important;
+  mix-blend-mode: normal !important;
 }

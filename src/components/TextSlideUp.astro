@@ -66,6 +66,7 @@ const { text, maxWidth = '600px', ...rest } = Astro.props;
           duration: 0.8,
           ease: 'power3.out',
           stagger: 0.1,
+          delay: 1,
         });
       } else {
         // Fallback: If SplitType fails or yields no lines, ensure the text doesn't stay hidden forever
