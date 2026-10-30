@@ -35,73 +35,12 @@ const t = useTranslations(lang);
     <div
       id="curtain-wipe"
       transition:persist="curtain-container"
-      class="fixed inset-0 h-screen w-screen bg-zinc-950 z-50 pointer-events-none curtain-reset flex flex-col items-center justify-center gap-4"
+      class="fixed inset-0 h-screen w-screen bg-gray-200 z-50 pointer-events-none curtain-reset flex flex-col items-center justify-center"
     >
-      <!-- ⏳ Top Edge Progress Loader Bar -->
-      <div
-        id="curtain-progress"
-        class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 origin-left scale-x-0"
-      >
-      </div>
-
-      <!-- 🔢 Simple Numerical Percentage Counter -->
-      <div
-        class="flex items-baseline font-mono font-bold tracking-tighter text-white"
-      >
-        <span id="curtain-percentage" class="text-6xl md:text-8xl tabular-nums"
-          >0</span
-        >
-        <span class="text-2xl md:text-3xl text-zinc-500 ml-1">%</span>
-      </div>
-
-      <!-- 🏷️ Horizontal Letter Expansion Container -->
-      <div
-        id="morphing-text"
-        style="--background: #ffffff;"
-        class="flex items-center gap-[0.35em] text-sm font-bold uppercase tracking-widest text-zinc-400 select-none mt-2 [&_span]:text-xs!"
-      >
-        <!-- Word 1: Advokat -->
-        <div class="flex items-center">
-          <span class="text-(--background) transition-colors duration-300">
-            A
-          </span>
-          <div
-            class="max-w-0 overflow-hidden transition-all duration-600 cubic-bezier(0.25,1,0.5,1) flex whitespace-nowrap opacity-0"
-          >
-            <span>d</span><span>v</span><span>o</span><span>k</span><span
-              >a</span
-            ><span>t</span>
-          </div>
-        </div>
-
-        <!-- Word 2: Dubravka -->
-        <div class="flex items-center">
-          <span class="text-(--background) transition-colors duration-300"
-            >D</span
-          >
-          <div
-            class="max-w-0 overflow-hidden transition-all duration-600 cubic-bezier(0.25,1,0.5,1) flex whitespace-nowrap opacity-0"
-          >
-            <span>u</span><span>b</span><span>r</span><span>a</span><span
-              >v</span
-            ><span>k</span><span>a</span>
-          </div>
-        </div>
-
-        <!-- Word 3: Vuković -->
-        <div class="flex items-center">
-          <span class="text-(--background) transition-colors duration-300"
-            >V</span
-          >
-          <div
-            class="max-w-0 overflow-hidden transition-all duration-600 cubic-bezier(0.25,1,0.5,1) flex whitespace-nowrap opacity-0"
-          >
-            <span>u</span><span>k</span><span>o</span><span>v</span><span
-              >i</span
-            ><span>ć</span>
-          </div>
-        </div>
-      </div>
+      <!-- 🏷️ Clean Static Text Block -->
+      <p class="text-xs! font-bold uppercase tracking-widest select-none">
+        {t('site.title')}
+      </p>
     </div>
     <main
       id="main"
@@ -162,62 +101,6 @@ const t = useTranslations(lang);
   import type { TransitionBeforePreparationEvent } from 'astro:transitions/client';
 
   if (!window.__curtainListenersAttached) {
-    let targetProgress = 0;
-    let currentProgress = 0;
-    let animationFrameId: number | null = null;
-
-    function updateLoaderUI(percent: number) {
-      const progress = document.getElementById('curtain-progress');
-      const counter = document.getElementById('curtain-percentage');
-      if (progress) progress.style.transform = `scaleX(${percent / 100})`;
-      if (counter) counter.textContent = String(Math.floor(percent));
-
-      const morphContainer = document.getElementById('morphing-text');
-      if (morphContainer) {
-        const extensions = morphContainer.querySelectorAll(
-          '.flex.items-center > div',
-        );
-
-        if (percent >= 90) {
-          extensions.forEach((el) => {
-            const htmlEl = el as HTMLElement;
-            htmlEl.style.maxWidth = '12rem';
-            htmlEl.style.opacity = '1';
-            htmlEl.style.marginLeft = '0.15em';
-          });
-        } else {
-          extensions.forEach((el) => {
-            const htmlEl = el as HTMLElement;
-            htmlEl.style.maxWidth = '0';
-            htmlEl.style.opacity = '0';
-            htmlEl.style.marginLeft = '0';
-          });
-        }
-      }
-    }
-
-    function smoothDampLoop() {
-      const easingFactor = 0.08;
-      const diff = targetProgress - currentProgress;
-
-      if (Math.abs(diff) > 0.01) {
-        currentProgress += diff * easingFactor;
-        updateLoaderUI(currentProgress);
-        animationFrameId = requestAnimationFrame(smoothDampLoop);
-      } else {
-        currentProgress = targetProgress;
-        updateLoaderUI(currentProgress);
-        animationFrameId = null;
-      }
-    }
-
-    function setTargetProgress(value: number) {
-      targetProgress = value;
-      if (animationFrameId === null) {
-        animationFrameId = requestAnimationFrame(smoothDampLoop);
-      }
-    }
-
     document.addEventListener('astro:before-preparation', (ev: Event) => {
       const transitionEvent = ev as TransitionBeforePreparationEvent;
       if (!transitionEvent.to) return;
@@ -226,83 +109,51 @@ const t = useTranslations(lang);
         const curtain = document.getElementById('curtain-wipe');
         if (curtain) {
           curtain.className =
-            'fixed inset-0 w-screen h-screen bg-zinc-950 z-50 pointer-events-none curtain-up flex flex-col items-center justify-center gap-4';
+            'fixed inset-0 w-screen h-screen bg-gray-200 z-50 pointer-events-none curtain-up flex flex-col items-center justify-center';
         }
 
-        if (animationFrameId) cancelAnimationFrame(animationFrameId);
-        animationFrameId = null;
-        targetProgress = 0;
-        currentProgress = 0;
-        updateLoaderUI(0);
-
         try {
-          const response = await fetch(transitionEvent.to.href);
+          // ⏳ THE FIX: Run the network fetch and a fixed 500ms animation timer side-by-side.
+          // This prevents the page from swapping prematurely if the network is too fast.
+          const [response] = await Promise.all([
+            fetch(transitionEvent.to.href),
+            new Promise((resolve) => setTimeout(resolve, 500)), // Matches --animate-wipe-up exactly
+          ]);
+
           if (!response.ok) throw new Error('Network response failure');
 
-          const contentLengthHeader = response.headers.get('Content-Length');
-          const totalBytes = contentLengthHeader
-            ? parseInt(contentLengthHeader, 10)
-            : 20000;
-
-          const reader = response.body?.getReader();
-          if (!reader) return;
-
-          let receivedBytes = 0;
-          const chunks: Uint8Array[] = [];
-
-          while (true) {
-            const { done, value } = await reader.read();
-            if (done) break;
-
-            chunks.push(value);
-            receivedBytes += value.length;
-
-            const rawPercent = (receivedBytes / totalBytes) * 100;
-            setTargetProgress(Math.min(rawPercent, 95));
-          }
-
-          setTargetProgress(100);
-
-          while (currentProgress < 99.9) {
-            await new Promise((resolve) => setTimeout(resolve, 16));
-          }
-
-          const blob = new Blob(chunks as unknown as BlobPart[], {
-            type: 'text/html',
-          });
-          const htmlText = await blob.text();
-
+          const htmlText = await response.text();
           const parser = new DOMParser();
           const newDocument = parser.parseFromString(htmlText, 'text/html');
 
-          await new Promise((resolve) => setTimeout(resolve, 300));
+          // Brief settle window before handing over to the swap event
+          await new Promise((resolve) => setTimeout(resolve, 50));
           transitionEvent.newDocument = newDocument;
         } catch (error) {
-          console.error('Streaming loader failed, falling back:', error);
-          setTargetProgress(100);
+          console.error('Loader failed, falling back:', error);
         }
       };
     });
 
+    // Slide away out the top when content swap finishes
     document.addEventListener('astro:after-swap', () => {
       const curtain = document.getElementById('curtain-wipe');
       if (curtain) {
         curtain.className =
-          'fixed inset-0 w-screen h-screen bg-zinc-950 z-50 pointer-events-none curtain-down flex flex-col items-center justify-center gap-4';
+          'fixed inset-0 w-screen h-screen bg-gray-200 z-50 pointer-events-none curtain-down flex flex-col items-center justify-center';
       }
     });
 
+    // Silently slide the overlay back to the bottom floor when transition completes
     document.addEventListener('astro:page-load', () => {
       const curtain = document.getElementById('curtain-wipe');
 
       if (curtain && curtain.classList.contains('curtain-down')) {
+        // Wait 400ms matching the --animate-wipe-down exit duration perfectly
         setTimeout(() => {
-          const progress = document.getElementById('curtain-progress');
-          if (progress) progress.style.transform = 'scaleX(0)';
-
           curtain.className =
-            'fixed inset-0 w-screen h-screen bg-zinc-950 z-50 pointer-events-none curtain-reset flex flex-col items-center justify-center gap-4';
-        }, 800);
+            'fixed inset-0 w-screen h-screen bg-gray-200 z-50 pointer-events-none curtain-reset flex flex-col items-center justify-center';
+        }, 400);
       }
     });
 
