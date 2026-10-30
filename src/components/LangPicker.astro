@@ -9,7 +9,7 @@ const currentPath = Astro.url.pathname.startsWith(`${base}/`)
   : Astro.url.pathname;
 ---
 
-<ul class="flex items-center justify-center gap-1">
+<ul class="inline-flex items-center justify-center gap-1">
   {
     Object.entries(languages).map(([lang, label], index) => (
       <li class="flex items-center justify-center gap-1">

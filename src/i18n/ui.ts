@@ -18,6 +18,7 @@ export const ui = {
     'nav.areas': 'Legal Areas',
     'nav.about': 'About',
     'nav.terms': 'Terms of use',
+    'nav.disclaimer': 'Disclaimer',
     'biography.title': 'Biography',
     'biography.paragraph':
       'Through an individual approach to each case, my goal is to provide clients with clear legal guidelines, reliable support and representation based on expertise, professional ethics and trust.\n\n2026 - Passed the bar exam\n2026 - Membership in the Bar Association of the Republic of Srpska\n2015 - Many years of experience in working on commercial and administrative law cases.',
@@ -64,6 +65,7 @@ export const ui = {
     'nav.areas': 'Области',
     'nav.about': 'О нама',
     'nav.terms': 'Услови коришћења',
+    'nav.disclaimer': 'Одрицање од одговорности',
     'biography.title': 'Биографија',
     'biography.paragraph':
       'Кроз индивидуалан приступ сваком случају, циљ ми је да клијентима пружим јасне правне смјернице, поуздану подршку и заступање засновано на стручности, професионалној етици и повјерењу.\n\n2026 - Положен правосудни испит\n2026 - Чланство у Адвокатској комори Републике Српске\n2015 - Дугогодишње искуство у раду на предметима привредног и управног права.',
@@ -110,6 +112,7 @@ export const ui = {
     'nav.areas': 'Oblasti',
     'nav.about': 'O nama',
     'nav.terms': 'Uslovi korišćenja',
+    'nav.disclaimer': 'Odricanje od odgovornosti',
     'biography.title': 'Biografija',
     'biography.paragraph':
       'Kroz individualan pristup svakom slučaju, cilj mi je da klijentima pružim jasne pravne smjernice, pouzdanu podršku i zastupanje zasnovano na stručnosti, profesionalnoj etici i povjerenju.\n\n2026 - Položen pravosudni ispit\n2026 - Članstvo u Advokatskoj komori Republike Srpske\n2015 - Dugogodisnje iskustvo u radu na predmetima privrednog i upravnog prava.',

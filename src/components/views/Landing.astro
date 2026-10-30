@@ -8,10 +8,10 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<Main title={`${t('site.title')}`}>
-  <Section>
-    <h1 class="lg:w-1/2">
+<Main title={`${t('site.title')}`} layout="centered">
+  <Section cls={'flex flex-col items-center justify-center'}>
+    <div class="w-full md:w-2/3 lg:w-1/2 [&>div>p]:text-2xl!">
       <TextSlideUp text={t('landinng.title')} maxWidth="1200px" />
-    </h1>
+    </div>
   </Section>
 </Main>
