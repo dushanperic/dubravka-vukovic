@@ -47,9 +47,12 @@ const t = useTranslations(lang);
   const form = document.querySelector('form');
   form?.addEventListener('submit', handleEmailClientRedirect);
 </script> -->
-<Main title={`${t('contact.title')} | ${t('site.title')}`}>
-  <Section id="contact">
-    <PageTitle text={t('contact.title')} />
+<Main
+  title={`${t('contact.title')} | ${t('site.title')}`}
+  pageTitle={t('contact.title')}
+>
+  <Section id="contact" cls="mt-20">
+    <PageTitle text={t('contact.title')} cls="md:hidden" />
 
     <address class="mb-4 flex flex-col gap-2">
       <span class="inline-block w-auto">{t('contact.address.street')}</span>

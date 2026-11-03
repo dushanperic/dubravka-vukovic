@@ -1,7 +1,7 @@
 ---
-const { text, ...rest } = Astro.props;
+const { text, cls, ...rest } = Astro.props;
 ---
 
-<h3 class="mb-8" {...rest}>
+<h3 class="mb-8" class:list={cls} {...rest}>
   {text}
 </h3>
