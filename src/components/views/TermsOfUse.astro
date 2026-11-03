@@ -3,15 +3,17 @@ import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 import Section from '../Section.astro';
 import PageTitle from '../PageTitle.astro';
 import Main from '../../layouts/main.astro';
-import { pageTransition } from '../../config/page-transitions';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<Main title={`${t('terms_of_use.title')} | ${t('site.title')}`}>
-  <Section id="terms_of_use">
-    <PageTitle text={t('terms_of_use.title')} />
+<Main
+  title={`${t('terms_of_use.title')} | ${t('site.title')}`}
+  pageTitle={t('terms_of_use.title')}
+>
+  <Section id="terms_of_use" cls="lg:mt-20">
+    <PageTitle text={t('terms_of_use.title')} cls="md:hidden" />
 
     <p class="max-w-full md:max-w-1/2 whitespace-pre-line">
       {t('terms_of_use.content')}

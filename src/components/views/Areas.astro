@@ -31,10 +31,12 @@ const legalAreas = [
 ];
 ---
 
-<Main title={`${t('areas.title')} | ${t('site.title')}`}>
-  <Section id="areas">
-    <PageTitle text={t('areas.title')} />
-
+<Main
+  title={`${t('areas.title')} | ${t('site.title')}`}
+  pageTitle={t('areas.title')}
+>
+  <Section id="areas" cls="mt-20">
+    <PageTitle text={t('areas.title')} cls="md:hidden" />
     <ul class="flex flex-col gap-6 max-w-full md:max-w-2/3 lg:max-w-1/2">
       {
         legalAreas.map((item, index) => (
