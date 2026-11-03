@@ -9,6 +9,9 @@ declare global {
   interface DocumentEventMap {
     [eventKey.NAV_TOGGLE]: CustomEvent<NavigationButtonEventInterface>;
   }
+  interface Window {
+    __curtainListenersAttached?: boolean;
+  }
 }
 
 export {};

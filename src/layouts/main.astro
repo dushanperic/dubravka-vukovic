@@ -11,6 +11,7 @@ import { curtainWipe } from '../config/page-transitions';
 
 const {
   title,
+  pageTitle,
   description = 'Advokat Dubravka Vuković website',
   image,
   layout,
@@ -29,7 +30,7 @@ const t = useTranslations(lang);
   </head>
   <body class="view-wipe-container">
     <BackgroundOverlay />
-    <Header />
+    <Header title={pageTitle} />
 
     <!-- 🎞️ Pure Color Curtain Overlay Container -->
     <div
@@ -38,7 +39,10 @@ const t = useTranslations(lang);
       class="fixed inset-0 h-screen w-screen bg-gray-200 z-50 pointer-events-none curtain-reset flex flex-col items-center justify-center"
     >
       <!-- 🏷️ Clean Static Text Block -->
-      <p class="text-xs! font-bold uppercase tracking-widest select-none">
+      <p
+        class="text-xs! font-bold uppercase tracking-widest select-none"
+        id="overlay-text"
+      >
         {t('site.title')}
       </p>
     </div>
@@ -56,7 +60,7 @@ const t = useTranslations(lang);
         <slot />
       </div>
       <div
-        class="w-auto sticky bottom-10 left-8 text-left invisible lg:visible"
+        class="w-auto sticky bottom-10 left-8 text-left invisible md:visible"
       >
         <LangPicker />
       </div>
@@ -64,7 +68,7 @@ const t = useTranslations(lang);
     <Footer />
     <script src="../scripts/global-mediator.ts"></script>
 
-    <script>
+    <!-- <script>
       const loader = document.getElementById('full-page-loader');
 
       let loadingTimeout: ReturnType<typeof setTimeout>;
@@ -87,18 +91,13 @@ const t = useTranslations(lang);
       document.addEventListener('astro:page-load', () => {
         loader?.classList.add('hidden');
       });
-    </script>
+    </script> -->
   </body>
 </html>
 
 <script>
-  declare global {
-    interface Window {
-      __curtainListenersAttached?: boolean;
-    }
-  }
-
   import type { TransitionBeforePreparationEvent } from 'astro:transitions/client';
+  import { getLangFromUrl, useTranslations } from '../i18n/utils';
 
   if (!window.__curtainListenersAttached) {
     document.addEventListener('astro:before-preparation', (ev: Event) => {
@@ -154,6 +153,16 @@ const t = useTranslations(lang);
           curtain.className =
             'fixed inset-0 w-screen h-screen bg-gray-200 z-50 pointer-events-none curtain-reset flex flex-col items-center justify-center';
         }, 400);
+      }
+
+      const overlayText = document.getElementById('overlay-text');
+
+      const url = window.location;
+      const lang = getLangFromUrl(new URL(url.href));
+      const t = useTranslations(lang);
+
+      if (overlayText) {
+        overlayText.textContent = t('site.title');
       }
     });
 
