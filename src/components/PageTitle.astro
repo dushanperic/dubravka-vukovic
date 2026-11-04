@@ -1,4 +1,11 @@
 ---
+import type { HTMLAttributes } from 'astro/types';
+
+interface Props extends HTMLAttributes<'h3'> {
+  text: string;
+  cls?: string;
+}
+
 const { text, cls, ...rest } = Astro.props;
 ---
 

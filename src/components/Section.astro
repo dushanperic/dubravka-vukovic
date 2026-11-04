@@ -1,7 +1,10 @@
 ---
-const { id } = Astro.props;
+interface Props {
+  id?: string;
+  cls?: string;
+}
 
-const { cls } = Astro.props;
+const { id, cls } = Astro.props;
 ---
 
 <section id={id} class="w-full" class:list={cls}>
