@@ -3,6 +3,10 @@ import { getLangFromUrl, useTranslations, withBase } from '../i18n/utils';
 import Nav from './Nav.astro';
 import ThemeToggler from './ThemeToggler.astro';
 
+interface Props {
+  title?: string;
+}
+
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
