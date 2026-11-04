@@ -19,3 +19,11 @@ Run ESLint across the TypeScript and Astro source files with:
 ```sh
 npm run lint
 ```
+
+## Tests
+
+Run the unit tests with:
+
+```sh
+npm test
+```
