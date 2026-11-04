@@ -9,6 +9,14 @@ import BackgroundOverlay from '../components/BackgroundOverlay.astro';
 import LangPicker from '../components/LangPicker.astro';
 import { curtainWipe } from '../config/page-transitions';
 
+interface Props {
+  title: string;
+  pageTitle?: string;
+  description?: string;
+  image?: string;
+  layout?: 'centered';
+}
+
 const {
   title,
   pageTitle,
