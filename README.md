@@ -20,6 +20,12 @@ Run ESLint across the TypeScript and Astro source files with:
 npm run lint
 ```
 
+Run Astro's TypeScript and component-prop checks with:
+
+```sh
+npm run check
+```
+
 ## Tests
 
 Run the unit tests with:
