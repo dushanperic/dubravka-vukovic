@@ -1,0 +1,85 @@
+---
+import { getLangFromUrl, useTranslations, withBase } from '../i18n/utils';
+import LangPicker from './LangPicker.astro';
+import '../scripts/navigation-controller';
+
+const pathname = Astro.url.pathname;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const getNavLinkStyle = (path: string) => {
+  return pathname.includes(path) ? 'active-link' : '';
+};
+---
+
+<navigation-controler>
+  <button
+    type="button"
+    aria-expanded="false"
+    class="group z-100 relative md:hidden"
+    role="button"
+  >
+    <svg
+      class="w-8 h-8 fill-none stroke-current stroke-2 stroke-linecap-round"
+      viewBox="0 0 24 24"
+    >
+      <!-- Top Line -->
+      <path
+        class="origin-center transition-all duration-300 ease-in-out translate-y-1.5 group-aria-expanded:translate-y-0 group-aria-expanded:rotate-45"
+        d="M4 12h16"></path>
+      <!-- Middle Line -->
+      <path
+        class="origin-center transition-all duration-300 ease-in-out group-aria-expanded:opacity-0 group-aria-expanded:scale-x-0"
+        d="M4 12h16"></path>
+      <!-- Bottom Line -->
+      <path
+        class="origin-center transition-all duration-300 ease-in-out translate-y-1.5 group-aria-expanded:translate-y-0 group-aria-expanded:-rotate-45"
+        d="M4 12h16"></path>
+    </svg>
+  </button>
+  <nav-menu
+    data-state="closed"
+    class="data-[state=open]:opacity-100 data-[state=open]:translate-0 data-[state=closed]:opacity-0 data-[state=closed]:md:opacity-100 data-[state=closed]:translate-x-full bg-(--background) fixed top-0 left-1/2 bottom-0 right-0 md:relative md:bg-transparent md:top-auto md:left-auto md:bottom-auto md:right-auto md:translate-none transition-all shadow-lg md:shadow-none"
+  >
+    <nav class="h-full flex items-center justify-start" role="navigation">
+      <ul
+        class="flex pl-4 lg:pl-0 flex-col md:flex-row items-start justify-center md:justify-end gap-4 md:gap-6 z-100"
+      >
+        <li class="">
+          <a
+            href={withBase(`/${lang}/areas`)}
+            class:list={getNavLinkStyle('areas')}
+            class="leading-0"
+          >
+            {t('nav.areas')}
+          </a>
+        </li>
+        <li class="">
+          <a
+            href={withBase(`/${lang}/about`)}
+            class:list={getNavLinkStyle('about')}
+            class="leading-0"
+          >
+            {t('nav.biography')}
+          </a>
+        </li>
+        <li class="">
+          <a
+            href={withBase(`/${lang}/contact`)}
+            class:list={getNavLinkStyle('contact')}
+            class="leading-0"
+          >
+            {t('nav.contact')}
+          </a>
+        </li>
+        <li class="lg:pl-10 pt-8 md:pt-0 md:hidden">
+          <LangPicker />
+        </li>
+      </ul>
+    </nav>
+  </nav-menu>
+</navigation-controler>
+
+<script>
+  import '../scripts/navigation-controller';
+</script>
