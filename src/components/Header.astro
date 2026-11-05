@@ -1,6 +1,6 @@
 ---
 import { getLangFromUrl, useTranslations, withBase } from '../i18n/utils';
-import Nav from './Nav.astro';
+import Navigation from './Navigation.astro';
 import ThemeToggler from './ThemeToggler.astro';
 
 interface Props {
@@ -35,7 +35,7 @@ const { title } = Astro.props;
       </a>
       <span class="invisible md:visible">{title}</span>
       <div class="flex items-center justify-between md:last:ms-auto">
-        <Nav />
+        <Navigation />
         <ThemeToggler />
       </div>
     </div>
