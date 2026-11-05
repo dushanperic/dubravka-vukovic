@@ -10,8 +10,8 @@ const t = useTranslations(lang);
 const redirectUrl = withBase(`/${lang}`);
 ---
 
-<Main title={t('site.title')}>
-  <Section cls="text-center">
+<Main title={t('site.title')} layout="centered">
+  <Section id="404-page">
     <p class="text-3xl mb-6">404</p>
     <p class="text-sm mb-4">{currentPath}</p>
     <a href=`${redirectUrl}`>{t('common.home')}</a>
