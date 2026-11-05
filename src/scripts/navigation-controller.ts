@@ -12,7 +12,7 @@ if (typeof HTMLElement !== 'undefined') {
 
     connectedCallback() {
       this.button = this.querySelector<HTMLButtonElement>('button');
-      this.menu = this.querySelector<HTMLElement>('nav-menu');
+      this.menu = this.querySelector<HTMLElement>('nav');
 
       this.breakpoint = Number(this.dataset.breakpoint) || 768;
 

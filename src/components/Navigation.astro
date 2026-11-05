@@ -37,47 +37,47 @@ const getNavLinkStyle = (path: string) => {
         d="M4 12h16"></path>
     </svg>
   </button>
-  <nav-menu
+
+  <nav
     data-state="closed"
-    class="data-[state=open]:opacity-100 data-[state=open]:translate-0 data-[state=closed]:opacity-0 data-[state=closed]:md:opacity-100 data-[state=closed]:translate-x-full bg-(--background) fixed top-0 left-1/2 bottom-0 right-0 md:relative md:bg-transparent md:top-auto md:left-auto md:bottom-auto md:right-auto md:translate-none transition-all shadow-lg md:shadow-none"
+    role="navigation"
+    class="data-[state=open]:opacity-100 data-[state=open]:translate-0 data-[state=closed]:opacity-0 data-[state=closed]:md:opacity-100 data-[state=closed]:translate-x-full bg-(--background) fixed top-0 left-1/2 bottom-0 right-0 md:relative md:bg-transparent md:top-auto md:left-auto md:bottom-auto md:right-auto md:translate-none transition-all shadow-lg md:shadow-none md:translate-x-0!"
   >
-    <nav class="h-full flex items-center justify-start" role="navigation">
-      <ul
-        class="flex pl-4 lg:pl-0 flex-col md:flex-row items-start justify-center md:justify-end gap-4 md:gap-6 z-100"
-      >
-        <li class="">
-          <a
-            href={withBase(`/${lang}/areas`)}
-            class:list={getNavLinkStyle('areas')}
-            class="leading-0"
-          >
-            {t('nav.areas')}
-          </a>
-        </li>
-        <li class="">
-          <a
-            href={withBase(`/${lang}/about`)}
-            class:list={getNavLinkStyle('about')}
-            class="leading-0"
-          >
-            {t('nav.biography')}
-          </a>
-        </li>
-        <li class="">
-          <a
-            href={withBase(`/${lang}/contact`)}
-            class:list={getNavLinkStyle('contact')}
-            class="leading-0"
-          >
-            {t('nav.contact')}
-          </a>
-        </li>
-        <li class="lg:pl-10 pt-8 md:pt-0 md:hidden">
-          <LangPicker />
-        </li>
-      </ul>
-    </nav>
-  </nav-menu>
+    <ul
+      class="flex pl-4 lg:pl-0 flex-col md:flex-row items-start justify-center md:justify-end gap-4 md:gap-6 z-100 h-full md:h-auto"
+    >
+      <li class="">
+        <a
+          href={withBase(`/${lang}/areas`)}
+          class:list={getNavLinkStyle('areas')}
+          class="leading-0"
+        >
+          {t('nav.areas')}
+        </a>
+      </li>
+      <li class="">
+        <a
+          href={withBase(`/${lang}/about`)}
+          class:list={getNavLinkStyle('about')}
+          class="leading-0"
+        >
+          {t('nav.biography')}
+        </a>
+      </li>
+      <li class="">
+        <a
+          href={withBase(`/${lang}/contact`)}
+          class:list={getNavLinkStyle('contact')}
+          class="leading-0"
+        >
+          {t('nav.contact')}
+        </a>
+      </li>
+      <li class="lg:pl-10 pt-8 md:pt-0 md:hidden">
+        <LangPicker />
+      </li>
+    </ul>
+  </nav>
 </navigation-controler>
 
 <script>
