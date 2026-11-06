@@ -34,7 +34,7 @@ const t = useTranslations(lang);
     <BaseHead title={title} description={description} image={image} />
     <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
     <ClientRouter transition:animate="none" />
-    <script src="../scripts/nprogress-handler.ts"></script>
+    <!-- <script src="../scripts/nprogress-handler.ts"></script> -->
   </head>
   <body class="view-wipe-container">
     <BackgroundOverlay />
@@ -56,13 +56,13 @@ const t = useTranslations(lang);
     </div>
     <main
       id="main"
-      class="w-full mx-auto mb-103 lg:mb-73 px-6 md:px-8 bg-(--background) z-10 pb-8"
+      class="w-full mx-auto mb-78.5 lg:mb-74 px-6 md:px-8 bg-(--background) z-10 pb-8 min-h-screen"
     >
       <div
         class="w-full min-h-screen max-w-400 mx-auto"
         class:list={layout === 'centered'
           ? 'flex items-center justify-center'
-          : 'md:grid md:grid-cols-[1fr_2fr] pt-20 lg:pt-10'}
+          : 'md:grid md:md:grid-cols-3 md:gap-(--grid-gap) pt-21.5 md:pt-29.5 [&_section]:col-span-2'}
       >
         {layout !== 'centered' && <div />}
         <slot />
