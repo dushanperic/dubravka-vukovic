@@ -1,6 +1,6 @@
 import type { eventKey } from './config/events';
 
-export type EventType = 'trigger' | 'resize' | 'escape';
+export type EventType = 'trigger' | 'resize' | 'escape' | 'overlay';
 export interface NavigationButtonEventInterface {
   isOpen: boolean;
   source: EventType;
