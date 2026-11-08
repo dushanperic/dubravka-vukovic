@@ -3,28 +3,47 @@
 ---
 
 <background-overlay
-  class="fixed inset-0 backdrop-blur-xs invisible md:invisible z-10"
+  class="fixed inset-0 backdrop-blur-xs invisible md:invisible z-20 cursor-pointer"
+  aria-hidden="true"
 ></background-overlay>
 
 <script>
   import { eventKey } from '../config/events';
+  import { dispatchCustomEvent } from '../utils/events';
 
-  class BackgroundOverlay extends HTMLElement {
-    connectedCallback() {
-      this.addEventListener(eventKey.NAV_TOGGLE, () =>
-        this.handleBackgroundChange(),
-      );
+  if (typeof HTMLElement !== 'undefined') {
+    class BackgroundOverlay extends HTMLElement {
+      connectedCallback() {
+        document.addEventListener(eventKey.NAV_TOGGLE, this.onNavToggle);
+        this.addEventListener('click', this.onClick);
+      }
 
-      document.addEventListener(eventKey.NAV_TOGGLE, () => {
-        this.handleBackgroundChange();
-      });
+      disconnectedCallback() {
+        document.removeEventListener(eventKey.NAV_TOGGLE, this.onNavToggle);
+        this.removeEventListener('click', this.onClick);
+      }
+
+      private onNavToggle = (
+        e: DocumentEventMap[typeof eventKey.NAV_TOGGLE],
+      ) => {
+        this.syncUI(e.detail.isOpen);
+      };
+
+      private onClick = () => {
+        dispatchCustomEvent(eventKey.NAV_TOGGLE, {
+          isOpen: false,
+          source: 'overlay',
+        });
+      };
+
+      private syncUI(isOpen: boolean) {
+        this.classList.toggle('invisible', !isOpen);
+        this.setAttribute('aria-hidden', String(!isOpen));
+      }
     }
 
-    private handleBackgroundChange() {
-      this.classList.toggle('invisible');
+    if (!customElements.get('background-overlay')) {
+      customElements.define('background-overlay', BackgroundOverlay);
     }
   }
-
-  if (!customElements.get('background-overlay'))
-    customElements.define('background-overlay', BackgroundOverlay);
 </script>
