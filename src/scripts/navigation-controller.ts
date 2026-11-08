@@ -24,7 +24,7 @@ if (typeof HTMLElement !== 'undefined') {
       this.syncUI();
     }
 
-    disconectedCallback() {
+    disconnectedCallback() {
       this.button?.removeEventListener('click', this.toggle);
       document.removeEventListener(eventKey.NAV_TOGGLE, this.onToggle);
       window.removeEventListener('resize', this.onResize);
@@ -50,7 +50,7 @@ if (typeof HTMLElement !== 'undefined') {
     private onResize = () => {
       const isDesktop = window.innerWidth >= this.breakpoint;
 
-      if (isDesktop !== this.isOpen) {
+      if (isDesktop && this.isOpen) {
         this.setOpen(false, 'resize');
       }
     };
@@ -68,6 +68,6 @@ if (typeof HTMLElement !== 'undefined') {
   }
 
   if (!customElements.get('navigation-controller')) {
-    customElements.define('navigation-controler', NavigationController);
+    customElements.define('navigation-controller', NavigationController);
   }
 }
