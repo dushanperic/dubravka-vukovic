@@ -8,13 +8,29 @@ import { ClientRouter } from 'astro:transitions';
 import BackgroundOverlay from '../components/BackgroundOverlay.astro';
 import LangPicker from '../components/LangPicker.astro';
 import { curtainWipe } from '../config/page-transitions';
+import Container from '../components/ui/Container.astro';
+import {
+  LAYOUT_TYPE_KEY,
+  layoutTwClass,
+  type LayoutKeyType,
+} from '../config/layout';
 
 interface Props {
   title: string;
   pageTitle?: string;
   description?: string;
   image?: string;
-  layout?: 'centered';
+  layout?: LayoutKeyType;
+}
+
+interface AdditionalHeadContent {
+  script?: string;
+  link?: string;
+  meta?: string;
+}
+
+interface ExtendedProps extends Props {
+  additionalHeadContent?: AdditionalHeadContent;
 }
 
 const {
@@ -23,10 +39,16 @@ const {
   description = 'Advokat Dubravka Vuković website',
   image,
   layout,
-} = Astro.props;
+  additionalHeadContent,
+} = Astro.props as ExtendedProps;
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+const getLayoutClass = (layout: LayoutKeyType | undefined) => {
+  if(!layout) return layoutTwClass[LAYOUT_TYPE_KEY.DEFAULT]
+  return layout ? layoutTwClass[layout] : layoutTwClass[LAYOUT_TYPE_KEY.DEFAULT];
+}
 ---
 
 <html lang={lang} transition:animate={curtainWipe}>
@@ -35,8 +57,11 @@ const t = useTranslations(lang);
     <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
     <ClientRouter transition:animate="none" />
     <!-- <script src="../scripts/nprogress-handler.ts"></script> -->
+    {additionalHeadContent?.script && <script src={additionalHeadContent.script}></script>}
+    {additionalHeadContent?.link && <link rel={additionalHeadContent?.link} />}
+    {additionalHeadContent?.meta && <meta name={additionalHeadContent?.meta} />}
   </head>
-  <body class="view-wipe-container">
+  <body>
     <BackgroundOverlay />
     <Header title={pageTitle} />
 
@@ -44,7 +69,7 @@ const t = useTranslations(lang);
     <div
       id="curtain-wipe"
       transition:persist="curtain-container"
-      class="fixed inset-0 h-screen w-screen bg-gray-200 z-50 pointer-events-none curtain-reset flex flex-col items-center justify-center"
+      class="fixed inset-0 h-[100dvh] w-screen bg-gray-200 z-50 pointer-events-none curtain-reset flex flex-col items-center justify-center"
     >
       <!-- 🏷️ Clean Static Text Block -->
       <p
@@ -54,52 +79,23 @@ const t = useTranslations(lang);
         {t('site.title')}
       </p>
     </div>
-    <main
-      id="main"
-      class="w-full mx-auto mb-78.5 lg:mb-74 px-6 md:px-8 bg-(--background) z-10 pb-8 min-h-screen"
-    >
-      <div
-        class="w-full min-h-screen max-w-400 mx-auto"
-        class:list={layout === 'centered'
-          ? 'flex items-center justify-center'
-          : 'md:grid md:md:grid-cols-3 md:gap-(--grid-gap) pt-21.5 md:pt-29.5 [&_section]:col-span-2'}
-      >
-        {layout !== 'centered' && <div />}
-        <slot />
-      </div>
-      <div
-        class="w-auto sticky bottom-10 left-8 text-left invisible md:visible"
-      >
-        <LangPicker />
-      </div>
+    <main id="main" class="w-full mx-auto mb-78.5 lg:mb-74 bg-(--background) z-10 pb-8 min-h-[100dvh]">
+      <Container>
+        <div
+          class="w-full min-h-[100dvh]"
+          class:list={[getLayoutClass(layout)]}
+        >
+          {layout !== LAYOUT_TYPE_KEY.CENTERED && <div />}
+          <slot />
+        </div>
+        <!-- Sticky LangPicker aligned to Column 1 -->
+        <div class="sticky bottom-10 h-0 z-20 inline-block invisible md:visible">
+          <LangPicker />
+        </div>
+      </Container>
     </main>
     <Footer />
     <script src="../scripts/global-mediator.ts"></script>
-
-    <!-- <script>
-      const loader = document.getElementById('full-page-loader');
-
-      let loadingTimeout: ReturnType<typeof setTimeout>;
-
-      document.addEventListener('astro:before-preparation', () => {
-        // Only reveal overlay if loading takes longer than 200ms
-        loadingTimeout = setTimeout(() => {
-          document
-            .getElementById('full-page-loader')
-            ?.classList.remove('hidden');
-        }, 200);
-      });
-
-      document.addEventListener('astro:after-swap', () => {
-        clearTimeout(loadingTimeout);
-        document.getElementById('full-page-loader')?.classList.add('hidden');
-      });
-
-      // Fallback safety to ensure hidden status once rendering settles
-      document.addEventListener('astro:page-load', () => {
-        loader?.classList.add('hidden');
-      });
-    </script> -->
   </body>
 </html>
 
@@ -116,7 +112,7 @@ const t = useTranslations(lang);
         const curtain = document.getElementById('curtain-wipe');
         if (curtain) {
           curtain.className =
-            'fixed inset-0 w-screen h-screen bg-gray-200 z-50 pointer-events-none curtain-up flex flex-col items-center justify-center';
+            'fixed inset-0 w-screen h-[100dvh] bg-gray-200 z-50 pointer-events-none curtain-up flex flex-col items-center justify-center';
         }
 
         try {
@@ -147,7 +143,7 @@ const t = useTranslations(lang);
       const curtain = document.getElementById('curtain-wipe');
       if (curtain) {
         curtain.className =
-          'fixed inset-0 w-screen h-screen bg-gray-200 z-50 pointer-events-none curtain-down flex flex-col items-center justify-center';
+          'fixed inset-0 w-screen h-[100dvh] bg-gray-200 z-50 pointer-events-none curtain-down flex flex-col items-center justify-center';
       }
     });
 
@@ -159,7 +155,7 @@ const t = useTranslations(lang);
         // Wait 400ms matching the --animate-wipe-down exit duration perfectly
         setTimeout(() => {
           curtain.className =
-            'fixed inset-0 w-screen h-screen bg-gray-200 z-50 pointer-events-none curtain-reset flex flex-col items-center justify-center';
+            'fixed inset-0 w-screen h-[100dvh] bg-gray-200 z-50 pointer-events-none curtain-reset flex flex-col items-center justify-center';
         }, 400);
       }
 

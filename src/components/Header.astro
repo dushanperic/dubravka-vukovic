@@ -2,6 +2,7 @@
 import { getLangFromUrl, useTranslations, withBase } from '../i18n/utils';
 import Navigation from './Navigation.astro';
 import ThemeToggler from './ThemeToggler.astro';
+import Container from './ui/Container.astro';
 
 interface Props {
   title?: string;
@@ -14,9 +15,9 @@ const { title } = Astro.props;
 ---
 
 <header
-  class="w-full py-6 md:py-8 lg:py-10 top-0 fixed z-30 bg-(--background) px-6 md:px-8"
+  class="w-full py-6 md:py-8 lg:py-10 top-0 fixed z-30 bg-(--background)"
 >
-  <div class="max-w-400 mx-auto">
+   <Container>
     <div
       class="w-full flex items-end md:grid md:grid-cols-3 md:gap-(--grid-gap) justify-between"
     >
@@ -39,5 +40,5 @@ const { title } = Astro.props;
         <ThemeToggler />
       </div>
     </div>
-  </div>
+    </Container>
 </header>

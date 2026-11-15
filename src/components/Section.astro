@@ -1,14 +1,13 @@
 ---
-interface Props {
-  id?: string;
+import type { HTMLAttributes } from 'astro/types';
+
+interface Props extends HTMLAttributes<'div'> {
   cls?: string;
 }
 
-const { id, cls } = Astro.props;
+const { id, class: className, cls, ...rest } = Astro.props;
 ---
 
-<section id={id} class="w-full" class:list={cls}>
-  <div class="w-full max-w-400 mx-auto">
+<section id={id} class="w-full" class:list={[className, cls]} {...rest}>
     <slot />
-  </div>
 </section>
