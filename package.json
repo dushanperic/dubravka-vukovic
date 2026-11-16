@@ -1,5 +1,5 @@
 {
-  "name": "",
+  "name": "dubravka-vukovic",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.18",
-    "astro": "^7.4.7",
+    "astro": "^7.4.12",
     "gsap": "^3.15.0",
     "split-type": "^0.3.4",
     "tailwindcss": "^4.1.18"
