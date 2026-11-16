@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import { getLangFromUrl } from '../i18n/utils';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import BaseHead from '../components/BaseHead.astro';
@@ -13,6 +13,7 @@ import {
   layoutTwClass,
   type LayoutKeyType,
 } from '../config/layout';
+
 
 interface Props {
   title: string;
@@ -42,22 +43,33 @@ const {
 } = Astro.props as ExtendedProps;
 
 const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 const getLayoutClass = (layout: LayoutKeyType | undefined) => {
   if(!layout) return layoutTwClass[LAYOUT_TYPE_KEY.DEFAULT]
   return layout ? layoutTwClass[layout] : layoutTwClass[LAYOUT_TYPE_KEY.DEFAULT];
 }
+
 ---
 
-<html lang={lang}>
+<html lang={lang} transition:animate="none">
   <head>
     <BaseHead title={title} description={description} image={image} />
-    <ClientRouter />
+    <ClientRouter transition:animate="none" />
     {additionalHeadContent?.script && <script src={additionalHeadContent.script}></script>}
     {additionalHeadContent?.link && <link rel={additionalHeadContent?.link} />}
     {additionalHeadContent?.meta && <meta name={additionalHeadContent?.meta} />}
   </head>
   <body>
+    <!-- 🎞️ Curtain Transition Overlay -->
+    <div
+      id="page-curtain"
+      transition:persist="page-curtain"
+      aria-hidden="true"
+      class="flex items-center justify-center"
+    >
+      <p>{t('site.name')}</p>
+    </div>
     <BackgroundOverlay />
     <Header title={pageTitle} />
 
@@ -78,5 +90,6 @@ const getLayoutClass = (layout: LayoutKeyType | undefined) => {
     </main>
     <Footer />
     <script src="../scripts/global-mediator.ts"></script>
+    <script src="../scripts/page-curtain.ts"></script>
   </body>
 </html>
