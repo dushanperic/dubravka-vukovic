@@ -9,13 +9,13 @@ const currentPath = Astro.url.pathname.startsWith(`${base}/`)
   : Astro.url.pathname;
 ---
 
-<ul class="inline-flex items-center justify-center gap-1">
+<ul class='inline-flex items-center justify-center gap-1'>
   {
     Object.entries(languages).map(([lang, label], index) => (
-      <li class="flex items-center justify-center gap-1">
+      <li class='flex items-center justify-center gap-1'>
         <a href={getLocalizedURL(lang, currentPath)}>{label}</a>
         <span
-          class="w-px h-3 bg-(--text)"
+          class='h-3 w-px bg-(--text)'
           class:list={
             index < Object.keys(languages)?.length - 1 ? 'block' : 'hidden'
           }

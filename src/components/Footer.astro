@@ -7,40 +7,41 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const currentYear = new Date().getFullYear();
-
 ---
 
-<footer class="w-full text-left pt-12 fixed left-0 bottom-0 z-[-1] bg-(--curtain-background)">
+<footer
+  class='fixed bottom-0 left-0 z-[-1] w-full bg-(--curtain-background) pt-12 text-left'
+>
   <Container>
     <div
-      class="w-full grid grid-cols-1 lg:grid-cols-3 gap-(--grid-gap) py-6 lg:py-20"
+      class='grid w-full grid-cols-1 gap-(--grid-gap) py-6 lg:grid-cols-3 lg:py-20'
     >
-      <ul class="">
+      <ul class=''>
         <li>
           <a
-            href="tel:+38765/862-731"
-            target="_blank"
-            class="block text-base! leading-relaxed!"
+            href='tel:+38765/862-731'
+            target='_blank'
+            class='block text-base! leading-relaxed!'
           >
             {t('footer.contact.phone')}
           </a>
         </li>
         <li>
           <a
-            href="mailto:advokatdubravkavukovic@gmail.com"
-            target="_blank"
-            class="block md:w-auto truncate text-base! leading-relaxed!"
+            href='mailto:advokatdubravkavukovic@gmail.com'
+            target='_blank'
+            class='block truncate text-base! leading-relaxed! md:w-auto'
           >
             {t('footer.contact.email')}
           </a>
         </li>
       </ul>
       <nav>
-        <ul class="">
+        <ul class=''>
           <li>
             <a
               href={withBase(`/${lang}/terms`)}
-              class="text-base! leading-relaxed!"
+              class='text-base! leading-relaxed!'
             >
               {t('nav.terms')}
             </a>
@@ -48,19 +49,19 @@ const currentYear = new Date().getFullYear();
           <li>
             <a
               href={withBase(`/${lang}/disclaimer`)}
-              class="text-base! leading-relaxed!"
+              class='text-base! leading-relaxed!'
             >
               {t('nav.disclaimer')}
             </a>
           </li>
         </ul>
       </nav>
-      <div class="lg:last:ms-auto">
+      <div class='lg:last:ms-auto'>
         <AssociationLogoLink />
       </div>
     </div>
   </Container>
-  <span class="text-xs! block w-full text-left md:text-center py-2 px-12">
+  <span class='block w-full px-12 py-2 text-left text-xs! md:text-center'>
     {t('footer.copy')}
     {currentYear}
   </span>

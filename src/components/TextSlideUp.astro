@@ -9,8 +9,8 @@ interface Props extends HTMLAttributes<'p'> {
 const { text, maxWidth = '600px', class: className, ...rest } = Astro.props;
 ---
 
-<div class="text-container" style={`max-width: ${maxWidth};`}>
-  <p class="animate-slide-up" class:list={[className]} {...rest}>
+<div class='text-container' style={`max-width: ${maxWidth};`}>
+  <p class='animate-slide-up' class:list={[className]} {...rest}>
     {text}
   </p>
 </div>
