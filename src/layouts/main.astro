@@ -7,13 +7,13 @@ import BaseHead from '../components/BaseHead.astro';
 import { ClientRouter } from 'astro:transitions';
 import BackgroundOverlay from '../components/BackgroundOverlay.astro';
 import LangPicker from '../components/LangPicker.astro';
-import { curtainWipe } from '../config/page-transitions';
 import Container from '../components/ui/Container.astro';
 import {
   LAYOUT_TYPE_KEY,
   layoutTwClass,
   type LayoutKeyType,
 } from '../config/layout';
+
 
 interface Props {
   title: string;
@@ -49,9 +49,10 @@ const getLayoutClass = (layout: LayoutKeyType | undefined) => {
   if(!layout) return layoutTwClass[LAYOUT_TYPE_KEY.DEFAULT]
   return layout ? layoutTwClass[layout] : layoutTwClass[LAYOUT_TYPE_KEY.DEFAULT];
 }
+
 ---
 
-<html lang={lang} transition:animate={curtainWipe}>
+<html lang={lang} transition:animate="none">
   <head>
     <BaseHead title={title} description={description} image={image} />
     <ClientRouter transition:animate="none" />
@@ -60,23 +61,18 @@ const getLayoutClass = (layout: LayoutKeyType | undefined) => {
     {additionalHeadContent?.meta && <meta name={additionalHeadContent?.meta} />}
   </head>
   <body>
+    <!-- 🎞️ Curtain Transition Overlay -->
+    <div
+      id="page-curtain"
+      transition:persist="page-curtain"
+      aria-hidden="true"
+      class="flex items-center justify-center"
+    >
+      <p class="uppercase text-xs!">{t('site.title')}</p>
+    </div>
     <BackgroundOverlay />
     <Header title={pageTitle} />
 
-    <!-- 🎞️ Pure Color Curtain Overlay Container -->
-    <div
-      id="curtain-wipe"
-      transition:persist="curtain-container"
-      class="fixed inset-0 h-[100dvh] w-screen bg-gray-200 z-50 pointer-events-none curtain-reset flex flex-col items-center justify-center"
-    >
-      <!-- 🏷️ Clean Static Text Block -->
-      <p
-        class="text-xs! font-bold uppercase tracking-widest select-none"
-        id="overlay-text"
-      >
-        {t('site.title')}
-      </p>
-    </div>
     <main id="main" class="w-full mx-auto mb-78.5 lg:mb-74 bg-(--background) z-10 pb-8 min-h-[100dvh]">
       <Container>
         <div
@@ -94,80 +90,6 @@ const getLayoutClass = (layout: LayoutKeyType | undefined) => {
     </main>
     <Footer />
     <script src="../scripts/global-mediator.ts"></script>
+    <script src="../scripts/page-curtain.ts"></script>
   </body>
 </html>
-
-<script>
-  import type { TransitionBeforePreparationEvent } from 'astro:transitions/client';
-  import { getLangFromUrl, useTranslations } from '../i18n/utils';
-
-  if (!window.__curtainListenersAttached) {
-    document.addEventListener('astro:before-preparation', (ev: Event) => {
-      const transitionEvent = ev as TransitionBeforePreparationEvent;
-      if (!transitionEvent.to) return;
-
-      transitionEvent.loader = async (): Promise<void> => {
-        const curtain = document.getElementById('curtain-wipe');
-        if (curtain) {
-          curtain.className =
-            'fixed inset-0 w-screen h-[100dvh] bg-gray-200 z-50 pointer-events-none curtain-up flex flex-col items-center justify-center';
-        }
-
-        try {
-          // ⏳ THE FIX: Run the network fetch and a fixed 500ms animation timer side-by-side.
-          // This prevents the page from swapping prematurely if the network is too fast.
-          const [response] = await Promise.all([
-            fetch(transitionEvent.to.href),
-            new Promise((resolve) => setTimeout(resolve, 500)), // Matches --animate-wipe-up exactly
-          ]);
-
-          if (!response.ok) throw new Error('Network response failure');
-
-          const htmlText = await response.text();
-          const parser = new DOMParser();
-          const newDocument = parser.parseFromString(htmlText, 'text/html');
-
-          // Brief settle window before handing over to the swap event
-          await new Promise((resolve) => setTimeout(resolve, 50));
-          transitionEvent.newDocument = newDocument;
-        } catch (error) {
-          console.error('Loader failed, falling back:', error);
-        }
-      };
-    });
-
-    // Slide away out the top when content swap finishes
-    document.addEventListener('astro:after-swap', () => {
-      const curtain = document.getElementById('curtain-wipe');
-      if (curtain) {
-        curtain.className =
-          'fixed inset-0 w-screen h-[100dvh] bg-gray-200 z-50 pointer-events-none curtain-down flex flex-col items-center justify-center';
-      }
-    });
-
-    // Silently slide the overlay back to the bottom floor when transition completes
-    document.addEventListener('astro:page-load', () => {
-      const curtain = document.getElementById('curtain-wipe');
-
-      if (curtain && curtain.classList.contains('curtain-down')) {
-        // Wait 400ms matching the --animate-wipe-down exit duration perfectly
-        setTimeout(() => {
-          curtain.className =
-            'fixed inset-0 w-screen h-[100dvh] bg-gray-200 z-50 pointer-events-none curtain-reset flex flex-col items-center justify-center';
-        }, 400);
-      }
-
-      const overlayText = document.getElementById('overlay-text');
-
-      const url = window.location;
-      const lang = getLangFromUrl(new URL(url.href));
-      const t = useTranslations(lang);
-
-      if (overlayText) {
-        overlayText.textContent = t('site.title');
-      }
-    });
-
-    window.__curtainListenersAttached = true;
-  }
-</script>
