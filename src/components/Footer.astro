@@ -1,19 +1,21 @@
 ---
 import { getLangFromUrl, useTranslations, withBase } from '../i18n/utils';
 import AssociationLogoLink from './AssociationLogoLink.astro';
+import Container from './ui/Container.astro';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const currentYear = new Date().getFullYear();
+
 ---
 
 <footer
-  class="w-full text-left pt-12 fixed left-0 bottom-0 z-[-1] bg-gray-200 px-8"
+  class="w-full text-left pt-12 fixed left-0 bottom-0 z-[-1] bg-gray-200"
 >
-  <div class="max-w-400 mx-auto">
+  <Container>
     <div
-      class="w-full grid grid-cols-1 md:grid-cols-3 gap-(--grid-gap) py-6 lg:py-20"
+      class="w-full grid grid-cols-1 lg:grid-cols-3 gap-(--grid-gap) py-6 lg:py-20"
     >
       <ul class="">
         <li>
@@ -59,8 +61,8 @@ const currentYear = new Date().getFullYear();
         <AssociationLogoLink />
       </div>
     </div>
-  </div>
-  <span class="text-xs! block w-full text-left md:text-center py-2">
+  </Container>
+  <span class="text-xs! block w-full text-left md:text-center py-2 px-12">
     {t('footer.copy')}
     {currentYear}
   </span>

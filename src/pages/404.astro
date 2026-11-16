@@ -2,6 +2,7 @@
 import Main from '../layouts/main.astro';
 import { getLangFromUrl, useTranslations, withBase } from '../i18n/utils';
 import Section from '../components/Section.astro';
+import { LAYOUT_TYPE_KEY } from '../config/layout';
 const currentPath = Astro.url.pathname;
 
 const lang = getLangFromUrl(Astro.url);
@@ -10,8 +11,8 @@ const t = useTranslations(lang);
 const redirectUrl = withBase(`/${lang}`);
 ---
 
-<Main title={t('site.title')}>
-  <Section id="404-page" cls="mt-20">
+<Main title={t('site.title')} layout={LAYOUT_TYPE_KEY.COL_3}>
+  <Section id="404-page">
     <p class="text-3xl mb-6">404</p>
     <p class="text-sm mb-4">{currentPath}</p>
     <a href=`${redirectUrl}`>{t('common.home')}</a>
