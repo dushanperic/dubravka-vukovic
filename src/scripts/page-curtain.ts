@@ -28,10 +28,7 @@ function initCurtain() {
 
     // Phase 1: Slide UP from bottom to cover the screen
     const animIn = curtain.animate(
-      [
-        { transform: 'translateY(100%)' },
-        { transform: 'translateY(0%)' },
-      ],
+      [{ transform: 'translateY(100%)' }, { transform: 'translateY(0%)' }],
       {
         duration: DURATION_MS,
         easing: EASING_IN,
@@ -55,10 +52,7 @@ function initCurtain() {
 
     // Slide upward out of the screen, revealing the new page underneath
     const animOut = curtain.animate(
-      [
-        { transform: 'translateY(0%)' },
-        { transform: 'translateY(-100%)' },
-      ],
+      [{ transform: 'translateY(0%)' }, { transform: 'translateY(-100%)' }],
       {
         duration: DURATION_MS,
         easing: EASING_OUT,

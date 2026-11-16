@@ -21,7 +21,7 @@ html.dark {
 
 html body {
   scroll-behavior: smooth;
-  @apply text-(--text) bg-(--background);
+  @apply bg-(--background) text-(--text);
 }
 
 html.dark body {
@@ -39,7 +39,7 @@ html.dark nav ul {
 
 main a,
 footer a {
-  @apply hover:underline hover:decoration-(--primary-brand) decoration-1 transition-colors;
+  @apply decoration-1 transition-colors hover:underline hover:decoration-(--primary-brand);
 }
 
 a,
@@ -51,15 +51,15 @@ input,
 h1,
 h3,
 address {
-  @apply text-base md:text-lg xl:text-lg leading-normal font-normal;
+  @apply text-base leading-normal font-normal md:text-lg xl:text-lg;
 }
 
 header nav a {
-  @apply relative transition-colors after:absolute after:-bottom-2 after:left-0 after:h-0.5 after:w-full after:bg-(--primary-brand) after:scale-x-0 after:origin-bottom-right hover:after:scale-x-100 hover:after:origin-bottom-left after:transition-transform after:ease-out duration-300;
+  @apply relative transition-colors duration-300 after:absolute after:-bottom-2 after:left-0 after:h-0.5 after:w-full after:origin-bottom-right after:scale-x-0 after:bg-(--primary-brand) after:transition-transform after:ease-out hover:after:origin-bottom-left hover:after:scale-x-100;
 }
 
 .active-link {
-  @apply relative transition-colors after:absolute after:-bottom-2 after:left-0 after:h-0.5 after:w-full after:scale-100 after:bg-(--primary-brand) after:origin-bottom-right after:transition-transform after:ease-out;
+  @apply relative transition-colors after:absolute after:-bottom-2 after:left-0 after:h-0.5 after:w-full after:origin-bottom-right after:scale-100 after:bg-(--primary-brand) after:transition-transform after:ease-out;
 }
 
 @theme {
@@ -126,7 +126,6 @@ header nav a {
 }
 
 @media (prefers-reduced-motion: reduce) {
-
   ::view-transition-group(*),
   ::view-transition-old(*),
   ::view-transition-new(*) {
