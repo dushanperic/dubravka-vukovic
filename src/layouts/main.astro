@@ -54,9 +54,7 @@ const getLayoutClass = (layout: LayoutKeyType | undefined) => {
 <html lang={lang} transition:animate={curtainWipe}>
   <head>
     <BaseHead title={title} description={description} image={image} />
-    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
     <ClientRouter transition:animate="none" />
-    <!-- <script src="../scripts/nprogress-handler.ts"></script> -->
     {additionalHeadContent?.script && <script src={additionalHeadContent.script}></script>}
     {additionalHeadContent?.link && <link rel={additionalHeadContent?.link} />}
     {additionalHeadContent?.meta && <meta name={additionalHeadContent?.meta} />}
