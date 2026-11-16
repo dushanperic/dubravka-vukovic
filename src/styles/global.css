@@ -105,19 +105,10 @@ header nav a {
   pointer-events: none;
 }
 
-/* Page transition animations */
-.curtain-up {
-  animation: var(--animate-wipe-up);
-}
-.curtain-down {
-  animation: var(--animate-wipe-down);
-}
-.curtain-reset {
-  transform: translateY(100%) !important;
-}
-
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation: none !important;
-  mix-blend-mode: normal !important;
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
 }
