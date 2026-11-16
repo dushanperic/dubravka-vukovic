@@ -3,6 +3,7 @@ import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 import Section from '../Section.astro';
 import PageTitle from '../PageTitle.astro';
 import Main from '../../layouts/main.astro';
+import { LAYOUT_TYPE_KEY } from '../../config/layout';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -11,8 +12,9 @@ const t = useTranslations(lang);
 <Main
   title={`${t('biography.title')} | ${t('site.title')}`}
   pageTitle={t('biography.title')}
+  layout={LAYOUT_TYPE_KEY.COL_3}
 >
-  <Section id="biography" cls="mt-20">
+  <Section id="biography" class="md:col-span-2">
     <PageTitle text={t('biography.title')} cls="md:hidden" />
     <p class="max-w-full whitespace-pre-line">
       {t('biography.paragraph')}

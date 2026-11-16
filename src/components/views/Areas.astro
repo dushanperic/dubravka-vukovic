@@ -3,6 +3,7 @@ import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 import Section from '../Section.astro';
 import PageTitle from '../PageTitle.astro';
 import Main from '../../layouts/main.astro';
+import { LAYOUT_TYPE_KEY } from '../../config/layout';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -34,8 +35,9 @@ const legalAreas = [
 <Main
   title={`${t('areas.title')} | ${t('site.title')}`}
   pageTitle={t('areas.title')}
+  layout={LAYOUT_TYPE_KEY.COL_3}
 >
-  <Section id="areas" cls="mt-20">
+  <Section id="areas" class="md:col-span-2 2xl:col-span-1">
     <PageTitle text={t('areas.title')} cls="md:hidden" />
     <ul class="flex flex-col gap-6 max-w-full">
       {
