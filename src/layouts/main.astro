@@ -14,7 +14,6 @@ import {
   type LayoutKeyType,
 } from '../config/layout';
 
-
 interface Props {
   title: string;
   pageTitle?: string;
@@ -46,50 +45,60 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const getLayoutClass = (layout: LayoutKeyType | undefined) => {
-  if(!layout) return layoutTwClass[LAYOUT_TYPE_KEY.DEFAULT]
-  return layout ? layoutTwClass[layout] : layoutTwClass[LAYOUT_TYPE_KEY.DEFAULT];
-}
-
+  if (!layout) return layoutTwClass[LAYOUT_TYPE_KEY.DEFAULT];
+  return layout
+    ? layoutTwClass[layout]
+    : layoutTwClass[LAYOUT_TYPE_KEY.DEFAULT];
+};
 ---
 
-<html lang={lang} transition:animate="none">
+<html lang={lang} transition:animate='none'>
   <head>
     <BaseHead title={title} description={description} image={image} />
-    <ClientRouter transition:animate="none" />
-    {additionalHeadContent?.script && <script src={additionalHeadContent.script}></script>}
+    <ClientRouter transition:animate='none' />
+    {
+      additionalHeadContent?.script && (
+        <script src={additionalHeadContent.script} />
+      )
+    }
     {additionalHeadContent?.link && <link rel={additionalHeadContent?.link} />}
     {additionalHeadContent?.meta && <meta name={additionalHeadContent?.meta} />}
   </head>
   <body>
     <!-- 🎞️ Curtain Transition Overlay -->
     <div
-      id="page-curtain"
-      transition:persist="page-curtain"
-      aria-hidden="true"
-      class="flex items-center justify-center"
+      id='page-curtain'
+      transition:persist='page-curtain'
+      aria-hidden='true'
+      class='flex items-center justify-center'
     >
-      <p class="uppercase text-xs!">{t('site.title')}</p>
+      <p class='text-xs! uppercase'>{t('site.title')}</p>
     </div>
     <BackgroundOverlay />
     <Header title={pageTitle} />
 
-    <main id="main" class="w-full mx-auto mb-78.5 lg:mb-74 bg-(--background) z-10 pb-8 min-h-[100dvh]">
+    <main
+      id='main'
+      class='z-10 mx-auto mb-78.5 min-h-[100dvh] w-full bg-(--background) pb-8 lg:mb-74'
+    >
       <Container>
         <div
-          class="w-full min-h-[100dvh]"
+          class='min-h-[100dvh] w-full'
           class:list={[getLayoutClass(layout)]}
         >
           {layout !== LAYOUT_TYPE_KEY.CENTERED && <div />}
           <slot />
         </div>
         <!-- Sticky LangPicker aligned to Column 1 -->
-        <div class="sticky bottom-10 h-0 z-20 inline-block invisible md:visible">
+        <div
+          class='invisible sticky bottom-10 z-20 inline-block h-0 md:visible'
+        >
           <LangPicker />
         </div>
       </Container>
     </main>
     <Footer />
-    <script src="../scripts/global-mediator.ts"></script>
-    <script src="../scripts/page-curtain.ts"></script>
+    <script src='../scripts/global-mediator.ts'></script>
+    <script src='../scripts/page-curtain.ts'></script>
   </body>
 </html>

@@ -14,31 +14,29 @@ const t = useTranslations(lang);
 const { title } = Astro.props;
 ---
 
-<header
-  class="w-full py-6 md:py-8 lg:py-10 top-0 fixed z-30 bg-(--background)"
->
-   <Container>
+<header class='fixed top-0 z-30 w-full bg-(--background) py-6 md:py-8 lg:py-10'>
+  <Container>
     <div
-      class="w-full flex items-end md:grid md:grid-cols-3 md:gap-(--grid-gap) justify-between"
+      class='flex w-full items-end justify-between md:grid md:grid-cols-3 md:gap-(--grid-gap)'
     >
       <a
         href={withBase(`/${lang}`)}
-        class="z-900 flex items-start md:items-center justify-start gap-4 md:gap-8"
+        class='z-900 flex items-start justify-start gap-4 md:items-center md:gap-8'
       >
-        <h1 class="flex-col md:flex-row [&>span]:mr-2">
+        <h1 class='flex-col md:flex-row [&>span]:mr-2'>
           <span>
             {t('site.prefix')}
           </span>
-          <span class="whitespace-nowrap">
+          <span class='whitespace-nowrap'>
             {t('site.name')}
           </span>
         </h1>
       </a>
-      <span class="invisible md:visible">{title}</span>
-      <div class="flex items-center justify-end">
+      <span class='invisible md:visible'>{title}</span>
+      <div class='flex items-center justify-end'>
         <Navigation />
         <ThemeToggler />
       </div>
     </div>
-    </Container>
+  </Container>
 </header>

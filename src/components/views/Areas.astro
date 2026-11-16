@@ -37,17 +37,17 @@ const legalAreas = [
   pageTitle={t('areas.title')}
   layout={LAYOUT_TYPE_KEY.COL_3}
 >
-  <Section id="areas" class="md:col-span-2 2xl:col-span-1">
-    <PageTitle text={t('areas.title')} cls="md:hidden" />
-    <ul class="flex flex-col gap-6 max-w-full">
+  <Section id='areas' class='md:col-span-2 2xl:col-span-1'>
+    <PageTitle text={t('areas.title')} cls='md:hidden' />
+    <ul class='flex max-w-full flex-col gap-6'>
       {
         legalAreas.map((item) => (
           <li>
-            <p class="mb-1">{t(item.title)}</p>
+            <p class='mb-1'>{t(item.title)}</p>
             <a
               href={item.url}
-              target="_blank"
-              class="block w-auto text-sm! leading-normal line-clamp-1 break-all"
+              target='_blank'
+              class='line-clamp-1 block w-auto text-sm! leading-normal break-all'
             >
               {item.info}
             </a>

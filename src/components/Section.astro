@@ -8,6 +8,6 @@ interface Props extends HTMLAttributes<'div'> {
 const { id, class: className, cls, ...rest } = Astro.props;
 ---
 
-<section id={id} class="w-full" class:list={[className, cls]} {...rest}>
-    <slot />
+<section id={id} class='w-full' class:list={[className, cls]} {...rest}>
+  <slot />
 </section>
