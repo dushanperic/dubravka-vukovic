@@ -10,6 +10,7 @@
     "lint": "eslint .",
     "check": "astro check",
     "test": "vitest run",
+    "spellcheck": "cspell --no-progress \"src/i18n/**/*\" \"src/components/**/*\"",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
@@ -20,7 +21,10 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.12",
+    "@cspell/dict-sr-cyrl": "^1.1.8",
+    "@cspell/dict-sr-latn": "^1.0.10",
     "@eslint/js": "^10.0.1",
+    "cspell": "^9.8.0",
     "eslint": "^10.15.0",
     "eslint-plugin-astro": "^1.7.0",
     "globals": "^17.14.0",

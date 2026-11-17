@@ -1,0 +1,9 @@
+{
+  "version": "0.2",
+  "import": [
+    "@cspell/dict-sr-cyrl/cspell-ext.json",
+    "@cspell/dict-sr-latn/cspell-ext.json"
+  ],
+  "language": "en,sr,sr-Cyrl,sr-Latn",
+  "words": ["Dubravka", "Mišića", "Vuković", "Živojina"]
+}
