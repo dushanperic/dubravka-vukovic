@@ -45,6 +45,12 @@ if (typeof HTMLElement !== 'undefined') {
     private onToggle = (e: DocumentEventMap['site:navigation-toggle']) => {
       this.isOpen = e.detail.isOpen;
       this.syncUI();
+      if (
+        !this.isOpen &&
+        (e.detail.source === 'escape' || e.detail.source === 'overlay')
+      ) {
+        this.button?.focus();
+      }
     };
 
     private onResize = () => {
@@ -52,6 +58,8 @@ if (typeof HTMLElement !== 'undefined') {
 
       if (isDesktop && this.isOpen) {
         this.setOpen(false, 'resize');
+      } else {
+        this.syncUI();
       }
     };
 
@@ -62,8 +70,17 @@ if (typeof HTMLElement !== 'undefined') {
     };
 
     private syncUI() {
+      const isDesktop = window.innerWidth >= this.breakpoint;
       this.button?.setAttribute('aria-expanded', String(this.isOpen));
-      this.menu?.setAttribute('data-state', this.isOpen ? 'open' : 'closed');
+      if (this.menu) {
+        this.menu.dataset.state = this.isOpen ? 'open' : 'closed';
+        const isHidden = !isDesktop && !this.isOpen;
+        if (isHidden && this.menu.contains(document.activeElement)) {
+          this.button?.focus();
+        }
+        this.menu.inert = isHidden;
+        this.menu.setAttribute('aria-hidden', String(isHidden));
+      }
     }
   }
 

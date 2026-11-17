@@ -24,6 +24,19 @@ html body {
   @apply bg-(--background) text-(--text);
 }
 
+:focus-visible {
+  outline: 3px solid var(--primary-brand);
+  outline-offset: 3px;
+}
+
+html.dark :focus-visible {
+  outline-color: var(--dark-text);
+}
+
+.skip-link {
+  transition: none;
+}
+
 html.dark body {
   scroll-behavior: smooth;
   @apply text-(--dark-text);
@@ -126,6 +139,11 @@ header nav a {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html,
+  html body {
+    scroll-behavior: auto;
+  }
+
   ::view-transition-group(*),
   ::view-transition-old(*),
   ::view-transition-new(*) {
