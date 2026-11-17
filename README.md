@@ -8,6 +8,7 @@ A multilingual, statically generated website for attorney Dubravka Vuković. The
 - **TypeScript** is used for shared utilities and browser-side behavior, with Astro's strict TypeScript configuration.
 - **Tailwind CSS 4** provides utility styling through the Tailwind Vite plugin; global styles live in `src/styles/global.css`.
 - **Vitest** runs unit tests for shared utilities.
+- **CSpell** checks spelling in translations and shared components, with English and Serbian dictionaries.
 - **ESLint** and **Prettier** provide linting and formatting.
 
 ## Getting started
@@ -50,21 +51,23 @@ The site URL and GitHub Pages base path are configured in `astro.config.mjs`. Th
 | `@tailwindcss/vite`                                                | Tailwind CSS 4 integration with Vite               |
 | `typescript`                                                       | TypeScript language and compiler                   |
 | `vitest`                                                           | Unit test runner                                   |
+| `cspell`, `@cspell/dict-sr-cyrl`, `@cspell/dict-sr-latn`           | English and Serbian spell checking                 |
 | `eslint`, `eslint-plugin-astro`, `typescript-eslint`               | JavaScript, TypeScript, and Astro linting          |
 | `prettier`, `prettier-plugin-astro`, `prettier-plugin-tailwindcss` | Formatting Astro, TypeScript, and Tailwind classes |
 
 ## Useful commands
 
-| Command                | Description                              |
-| ---------------------- | ---------------------------------------- |
-| `npm run dev`          | Start the local development server       |
-| `npm run build`        | Build the static site into `dist/`       |
-| `npm run preview`      | Preview the production build locally     |
-| `npm run check`        | Run Astro and TypeScript diagnostics     |
-| `npm run lint`         | Run ESLint                               |
-| `npm test`             | Run Vitest tests                         |
-| `npm run format`       | Format project files with Prettier       |
-| `npm run format:check` | Check formatting without modifying files |
+| Command                | Description                                       |
+| ---------------------- | ------------------------------------------------- |
+| `npm run dev`          | Start the local development server                |
+| `npm run build`        | Build the static site into `dist/`                |
+| `npm run preview`      | Preview the production build locally              |
+| `npm run check`        | Run Astro and TypeScript diagnostics              |
+| `npm run lint`         | Run ESLint                                        |
+| `npm test`             | Run Vitest tests                                  |
+| `npm run spellcheck`   | Check spelling in `src/i18n` and `src/components` |
+| `npm run format`       | Format project files with Prettier                |
+| `npm run format:check` | Check formatting without modifying files          |
 
 Before opening a pull request, run the checks that CI uses:
 
@@ -72,6 +75,7 @@ Before opening a pull request, run the checks that CI uses:
 npm run lint
 npm run check
 npm test
+npm run spellcheck
 npm run build
 ```
 
@@ -87,4 +91,4 @@ npm run build
 
 The workflow in [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) deploys the site to GitHub Pages when a commit is pushed to `main`.
 
-The workflow uses Node.js 22 and `npm ci`, then runs ESLint, Astro checks, Vitest, and the Astro production build. It uploads the generated `dist/` directory as a Pages artifact and deploys it to the `github-pages` environment. GitHub Pages must be configured to use GitHub Actions as its build and deployment source.
+The workflow uses Node.js 22 and `npm ci`, then runs ESLint, Astro checks, Vitest, the CSpell spelling check, and the Astro production build. It uploads the generated `dist/` directory as a Pages artifact and deploys it to the `github-pages` environment. GitHub Pages must be configured to use GitHub Actions as its build and deployment source.
