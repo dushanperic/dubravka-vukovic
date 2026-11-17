@@ -21,21 +21,20 @@ const isCurrentPage = (path: string) =>
     <svg
       aria-hidden='true'
       focusable='false'
-      class='stroke-linecap-round h-8 w-8 fill-none stroke-current stroke-2'
+      class='h-8 w-8 fill-none stroke-current stroke-2 [stroke-linecap:round]'
       viewBox='0 0 24 24'
     >
-      <!-- Top Line -->
+      <!-- Top Line: Morphs directly from y=8.5 to diagonal (\) -->
       <path
-        class='origin-center translate-y-1.5 transition-all duration-300 ease-in-out group-aria-expanded:translate-y-0 group-aria-expanded:rotate-45'
-        d='M4 12h16'></path>
-      <!-- Middle Line -->
+        d='M 4,8.5 L 20,8.5'
+        class="transition-[d] duration-300 ease-[cubic-bezier(0.68,-0.55,0.27,1.55)] group-aria-expanded:[d:path('M_6,6_L_18,18')]"
+      ></path>
+
+      <!-- Bottom Line: Morphs directly from y=15.5 to diagonal (/) -->
       <path
-        class='origin-center transition-all duration-300 ease-in-out group-aria-expanded:scale-x-0 group-aria-expanded:opacity-0'
-        d='M4 12h16'></path>
-      <!-- Bottom Line -->
-      <path
-        class='origin-center translate-y-1.5 transition-all duration-300 ease-in-out group-aria-expanded:translate-y-0 group-aria-expanded:-rotate-45'
-        d='M4 12h16'></path>
+        d='M 4,15.5 L 20,15.5'
+        class="transition-[d] duration-300 ease-[cubic-bezier(0.68,-0.55,0.27,1.55)] group-aria-expanded:[d:path('M_6,18_L_18,6')]"
+      ></path>
     </svg>
   </button>
 
