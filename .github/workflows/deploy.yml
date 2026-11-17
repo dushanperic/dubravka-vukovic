@@ -78,6 +78,10 @@ jobs:
           ${{ steps.detect-package-manager.outputs.runner }} test
         working-directory: ${{ env.BUILD_PATH }}
 
+      - name: Spellcheck translations and components
+        run: ${{ steps.detect-package-manager.outputs.runner }} spellcheck
+        working-directory: ${{ env.BUILD_PATH }}
+
       - name: Build with Astro
         run: ${{ steps.detect-package-manager.outputs.runner }} build
         working-directory: ${{ env.BUILD_PATH }}
