@@ -23,16 +23,16 @@ const { title } = Astro.props;
         href={withBase(`/${lang}`)}
         class='z-900 flex items-start justify-start gap-4 md:items-center md:gap-8'
       >
-        <h1 class='flex-col md:flex-row [&>span]:mr-2'>
+        <span class='block flex-col md:flex-row [&>span]:mr-2'>
           <span>
             {t('site.prefix')}
           </span>
           <span class='whitespace-nowrap'>
             {t('site.name')}
           </span>
-        </h1>
+        </span>
       </a>
-      <span class='invisible md:visible'>{title}</span>
+      {title ? <h1 class='hidden md:block'>{title}</h1> : <span />}
       <div class='flex items-center justify-end'>
         <Navigation />
         <ThemeToggler />

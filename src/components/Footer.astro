@@ -20,7 +20,6 @@ const currentYear = new Date().getFullYear();
         <li>
           <a
             href='tel:+38765/862-731'
-            target='_blank'
             class='block text-base! leading-relaxed!'
           >
             {t('footer.contact.phone')}
@@ -29,14 +28,13 @@ const currentYear = new Date().getFullYear();
         <li>
           <a
             href='mailto:advokatdubravkavukovic@gmail.com'
-            target='_blank'
             class='block truncate text-base! leading-relaxed! md:w-auto'
           >
             {t('footer.contact.email')}
           </a>
         </li>
       </ul>
-      <nav>
+      <nav aria-label={t('nav.footer')}>
         <ul class=''>
           <li>
             <a
