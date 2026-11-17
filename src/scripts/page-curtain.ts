@@ -38,7 +38,7 @@ function initCurtain() {
 
     // Run native page fetch and curtain slide-in in parallel
     event.loader = async () => {
-      await Promise.all([originalLoader(), animIn.finished]);
+      await Promise.all([originalLoader(), animIn.finished.catch(() => {})]);
     };
   });
 
