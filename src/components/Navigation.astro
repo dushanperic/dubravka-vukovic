@@ -8,18 +8,23 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const getNavLinkStyle = (path: string) => {
-  return pathname.includes(path) ? 'active-link' : '';
+  return pathname.endsWith(`/${path}`) ? 'active-link' : '';
 };
+
+const isCurrentPage = (path: string) => pathname.endsWith(`/${path}`);
 ---
 
 <navigation-controller>
   <button
     type='button'
     aria-expanded='false'
+    aria-controls='primary-navigation'
+    aria-label={t('nav.menu')}
     class='group relative z-100 md:hidden'
-    role='button'
   >
     <svg
+      aria-hidden='true'
+      focusable='false'
       class='stroke-linecap-round h-8 w-8 fill-none stroke-current stroke-2'
       viewBox='0 0 24 24'
     >
@@ -39,8 +44,11 @@ const getNavLinkStyle = (path: string) => {
   </button>
 
   <nav
+    id='primary-navigation'
     data-state='closed'
-    role='navigation'
+    aria-label={t('nav.primary')}
+    aria-hidden='true'
+    inert
     class='fixed top-0 right-0 bottom-0 left-1/2 bg-(--background) shadow-lg transition-all data-[state=closed]:translate-x-full data-[state=closed]:opacity-0 data-[state=open]:translate-0 data-[state=open]:opacity-100 md:relative md:top-auto md:right-auto md:bottom-auto md:left-auto md:translate-x-0! md:translate-none md:bg-transparent md:shadow-none data-[state=closed]:md:opacity-100'
   >
     <ul
@@ -50,6 +58,7 @@ const getNavLinkStyle = (path: string) => {
         <a
           href={withBase(`/${lang}/areas`)}
           class:list={getNavLinkStyle('areas')}
+          aria-current={isCurrentPage('areas') ? 'page' : undefined}
           class='leading-0'
         >
           {t('nav.areas')}
@@ -59,6 +68,7 @@ const getNavLinkStyle = (path: string) => {
         <a
           href={withBase(`/${lang}/about`)}
           class:list={getNavLinkStyle('about')}
+          aria-current={isCurrentPage('about') ? 'page' : undefined}
           class='leading-0'
         >
           {t('nav.biography')}
@@ -68,6 +78,7 @@ const getNavLinkStyle = (path: string) => {
         <a
           href={withBase(`/${lang}/contact`)}
           class:list={getNavLinkStyle('contact')}
+          aria-current={isCurrentPage('contact') ? 'page' : undefined}
           class='leading-0'
         >
           {t('nav.contact')}
