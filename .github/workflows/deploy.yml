@@ -52,7 +52,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: '22.23.4'
           cache: ${{ steps.detect-package-manager.outputs.manager }}
           cache-dependency-path: '${{ env.BUILD_PATH }}/package-lock.json' # Adjust if using yarn/pnpm
 
@@ -84,6 +84,14 @@ jobs:
 
       - name: Build with Astro
         run: ${{ steps.detect-package-manager.outputs.runner }} build
+        working-directory: ${{ env.BUILD_PATH }}
+
+      - name: Install Playwright browser
+        run: npx playwright install --with-deps chromium
+        working-directory: ${{ env.BUILD_PATH }}
+
+      - name: Run E2E tests
+        run: ${{ steps.detect-package-manager.outputs.runner }} test:e2e
         working-directory: ${{ env.BUILD_PATH }}
 
       - name: Upload artifact
