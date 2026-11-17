@@ -11,7 +11,7 @@ export const ui = {
     'site.title': 'Lawyer Dubravka Vuković',
     'site.prefix': 'Lawyer',
     'site.name': 'Dubravka Vuković ',
-    'landinng.title':
+    'landing.title':
       'A professional attitude towards law implies more than knowledge of regulations. It requires commitment to each case, understanding the clients needs and consistency in protecting his rights and interests.',
     'nav.biography': 'Biography',
     'nav.contact': 'Contact',
@@ -56,7 +56,7 @@ export const ui = {
     'footer.contact.email': 'E-mail: advokatdubravkavukovic@gmail.com',
     'legal_area.family_law': 'Family Law',
     'legal_area.criminal_law': 'Criminal Law',
-    'legal_area.inferitance_law': 'Law on Inheritance',
+    'legal_area.inheritance_law': 'Law on Inheritance',
     'terms_of_use.title': 'Terms of Use',
     'terms_of_use.content':
       'By using this website, you agree to the following Terms of Use.\n\nThe content of this website is provided for informational purposes only and does not constitute legal advice or establish an attorney-client relationship. For legal advice regarding a specific matter, please contact the attorney directly.\n\nThe website owner strives to ensure that all published information is accurate and up to date but does not guarantee its completeness and accepts no liability for any consequences arising from its use.\n\nThe content of this website, including texts and other materials, is protected by applicable copyright laws. Unauthorized copying, reproduction, or distribution of any content is prohibited.\n\nThis website uses Google Analytics to analyze website traffic and improve its content and user experience. When using the website, certain technical data and information about how the website is used may be collected. The website is provided through a web hosting service that may process technical data necessary for its operation and security.\n\nThe website owner reserves the right to amend these Terms of Use without prior notice.',
@@ -65,7 +65,7 @@ export const ui = {
     'site.title': 'Адвокат Дубравка Вуковић',
     'site.prefix': 'Адвокат',
     'site.name': 'Дубравка Вуковић',
-    'landinng.title':
+    'landing.title':
       'Професионални однос према праву подразумијева више од познавања прописа. Захтијева посвећеност сваком предмету, разумијевање потреба клијента и досљедност у заштити његових права и интереса.',
     'nav.biography': 'Биографија',
     'nav.contact': 'Контакт',
@@ -110,16 +110,16 @@ export const ui = {
     'footer.contact.email': 'E-mејл: advokatdubravkavukovic@gmail.com',
     'legal_area.family_law': 'Породично Право',
     'legal_area.criminal_law': 'Кривично Право',
-    'legal_area.inferitance_law': 'Закон о наслеђивању',
+    'legal_area.inheritance_law': 'Закон о наслеђивању',
     'terms_of_use.title': 'Правила коришћења',
     'terms_of_use.content':
-      ' Коришћењем ове интернет странице прихватате наведена правила коришћења.\n\nСадржај сајта служи искључиво у информативне сврхе и не представља правни савет нити успоставља однос између адвоката и клијента. За правни савет у вези са конкретним случајем потребно је директно контактирати адвоката.\n\nВласник сајта настоји да обезбеди тачност и ажурност објављених информација, али не гарантује њихову потпуност нити сноси одговорност за евентуалне последице настале њиховим коришћењем.\n\nСадржај сајта, укључујући текстове и друге материјале, заштићен је у складу са важећим прописима о ауторским правима. Није дозвољено његово неовлашћено копирање, умножавање или дистрибуција.\n\nСајт користи Google Analytics ради анализе посећености и унапређења садржаја и корисничког искуства. Приликом коришћења сајта могу се прикупљати одређени технички подаци и информације о начину коришћења странице. Сајт се пружа путем услуге за хостовање интернет садржаја, која може обрађивати техничке податке неопходне за функционисање и безбедност сајта.\n\nВласник сајта задржава право измене ових правила без претходне најаве.',
+      'Коришћењем ове интернет странице прихватате наведена правила коришћења.\n\nСадржај сајта служи искључиво у информативне сврхе и не представља правни савет нити успоставља однос између адвоката и клијента. За правни савет у вези са конкретним случајем потребно је директно контактирати адвоката.\n\nВласник сајта настоји да обезбеди тачност и ажурност објављених информација, али не гарантује њихову потпуност нити сноси одговорност за евентуалне последице настале њиховим коришћењем.\n\nСадржај сајта, укључујући текстове и друге материјале, заштићен је у складу са важећим прописима о ауторским правима. Није дозвољено његово неовлашћено копирање, умножавање или дистрибуција.\n\nСајт користи Google Analytics ради анализе посећености и унапређења садржаја и корисничког искуства. Приликом коришћења сајта могу се прикупљати одређени технички подаци и информације о начину коришћења странице. Сајт се пружа путем услуге за хостовање интернет садржаја, која може обрађивати техничке податке неопходне за функционисање и безбедност сајта.\n\nВласник сајта задржава право измене ових правила без претходне најаве.',
   },
   'sr-Latn': {
     'site.title': 'Advokat Dubravka Vuković',
     'site.prefix': 'Advokat',
     'site.name': 'Dubravka Vuković',
-    'landinng.title':
+    'landing.title':
       'Profesionalni odnos prema pravu podrazumijeva više od poznavanja propisa. Zahtijeva posvećenost svakom predmetu, razumijevanje potreba klijenta i dosljednost u zaštiti njegovih prava i interesa.',
     'nav.biography': 'Biografija',
     'nav.contact': 'Kontakt',
@@ -164,7 +164,7 @@ export const ui = {
     'footer.contact.email': 'E-mejl: advokatdubravkavukovic@gmail.com',
     'legal_area.family_law': 'Porodično Pravo',
     'legal_area.criminal_law': 'Krivično pravo',
-    'legal_area.inferitance_law': 'Zakon o nasledjivanju',
+    'legal_area.inheritance_law': 'Zakon o nasledjivanju',
     'terms_of_use.title': 'Pravila korišćenja',
     'terms_of_use.content':
       'Korišćenjem ove internet stranice prihvatate navedena pravila korišćenja.\n\nSadržaj sajta služi isključivo u informativne svrhe i ne predstavlja pravni savet niti uspostavlja odnos između advokata i klijenta. Za pravni savet u vezi sa konkretnim slučajem potrebno je direktno kontaktirati advokata.\n\nVlasnik sajta nastoji da obezbedi tačnost i ažurnost objavljenih informacija, ali ne garantuje njihovu potpunost niti snosi odgovornost za eventualne posledice nastale njihovim korišćenjem.\n\nSadržaj sajta, uključujući tekstove i druge materijale, zaštićen je u skladu sa važećim propisima o autorskim pravima. Nije dozvoljeno njegovo neovlašćeno kopiranje, umnožavanje ili distribucija.\nSajt koristi Google Analytics radi analize posećenosti i unapređenja sadržaja i korisničkog iskustva. Prilikom korišćenja sajta mogu se prikupljati određeni tehnički podaci i informacije o načinu korišćenja stranice. Sajt se pruža putem usluge za hostovanje internet sadržaja, koja može obrađivati tehničke podatke neophodne za funkcionisanje i bezbednost sajta.\n\nVlasnik sajta zadržava pravo izmene ovih pravila bez prethodne najave.',

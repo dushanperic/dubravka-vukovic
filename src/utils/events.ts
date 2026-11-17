@@ -8,7 +8,7 @@ type EventRegistry = {
 export function dispatchCustomEvent<K extends keyof EventRegistry>(
   eventName: K,
   detail: EventRegistry[K],
-  options?: Omit<CustomEventInit, 'details'>,
+  options?: Omit<CustomEventInit, 'detail'>,
 ): boolean {
   if (typeof document === 'undefined') return false;
 

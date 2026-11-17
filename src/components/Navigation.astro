@@ -1,17 +1,13 @@
 ---
 import { getLangFromUrl, useTranslations, withBase } from '../i18n/utils';
 import LangPicker from './LangPicker.astro';
-import '../scripts/navigation-controller';
 
 const pathname = Astro.url.pathname;
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const getNavLinkStyle = (path: string) => {
-  return pathname.endsWith(`/${path}`) ? 'active-link' : '';
-};
-
-const isCurrentPage = (path: string) => pathname.endsWith(`/${path}`);
+const isCurrentPage = (path: string) =>
+  pathname.trim().endsWith(`/${path.trim()}`);
 ---
 
 <navigation-controller>
@@ -25,21 +21,20 @@ const isCurrentPage = (path: string) => pathname.endsWith(`/${path}`);
     <svg
       aria-hidden='true'
       focusable='false'
-      class='stroke-linecap-round h-8 w-8 fill-none stroke-current stroke-2'
+      class='h-8 w-8 fill-none stroke-current stroke-2 [stroke-linecap:round]'
       viewBox='0 0 24 24'
     >
-      <!-- Top Line -->
+      <!-- Top Line: Morphs directly from y=8.5 to diagonal (\) -->
       <path
-        class='origin-center translate-y-1.5 transition-all duration-300 ease-in-out group-aria-expanded:translate-y-0 group-aria-expanded:rotate-45'
-        d='M4 12h16'></path>
-      <!-- Middle Line -->
+        d='M 4,8.5 L 20,8.5'
+        class="transition-[d] duration-300 ease-[cubic-bezier(0.68,-0.55,0.27,1.55)] group-aria-expanded:[d:path('M_6,6_L_18,18')]"
+      ></path>
+
+      <!-- Bottom Line: Morphs directly from y=15.5 to diagonal (/) -->
       <path
-        class='origin-center transition-all duration-300 ease-in-out group-aria-expanded:scale-x-0 group-aria-expanded:opacity-0'
-        d='M4 12h16'></path>
-      <!-- Bottom Line -->
-      <path
-        class='origin-center translate-y-1.5 transition-all duration-300 ease-in-out group-aria-expanded:translate-y-0 group-aria-expanded:-rotate-45'
-        d='M4 12h16'></path>
+        d='M 4,15.5 L 20,15.5'
+        class="transition-[d] duration-300 ease-[cubic-bezier(0.68,-0.55,0.27,1.55)] group-aria-expanded:[d:path('M_6,18_L_18,6')]"
+      ></path>
     </svg>
   </button>
 
@@ -54,30 +49,30 @@ const isCurrentPage = (path: string) => pathname.endsWith(`/${path}`);
     <ul
       class='z-100 flex h-full flex-col items-start justify-center gap-4 pl-4 md:h-auto md:flex-row md:items-end md:justify-end md:gap-6 lg:pl-0'
     >
-      <li class=''>
+      <li>
         <a
           href={withBase(`/${lang}/areas`)}
-          class:list={getNavLinkStyle('areas')}
+          class:list={[isCurrentPage('areas') && 'active-link']}
           aria-current={isCurrentPage('areas') ? 'page' : undefined}
           class='leading-0'
         >
           {t('nav.areas')}
         </a>
       </li>
-      <li class=''>
+      <li>
         <a
           href={withBase(`/${lang}/about`)}
-          class:list={getNavLinkStyle('about')}
+          class:list={[isCurrentPage('about') && 'active-link']}
           aria-current={isCurrentPage('about') ? 'page' : undefined}
           class='leading-0'
         >
           {t('nav.biography')}
         </a>
       </li>
-      <li class=''>
+      <li>
         <a
           href={withBase(`/${lang}/contact`)}
-          class:list={getNavLinkStyle('contact')}
+          class:list={[isCurrentPage('contact') && 'active-link']}
           aria-current={isCurrentPage('contact') ? 'page' : undefined}
           class='leading-0'
         >
