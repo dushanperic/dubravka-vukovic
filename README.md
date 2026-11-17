@@ -45,28 +45,28 @@ The site URL and GitHub Pages base path are configured in `astro.config.mjs`. Th
 
 ## Core dependencies
 
-| Package | Purpose |
-| --- | --- |
-| `astro` | Static site generation and Astro components |
-| `tailwindcss` | Utility-first styling |
-| `@tailwindcss/vite` | Tailwind CSS 4 integration with Vite |
-| `gsap`, `split-type` | Animation and text-splitting libraries declared by the project |
-| `typescript` | TypeScript language and compiler |
-| `vitest` | Unit test runner |
-| `eslint`, `eslint-plugin-astro`, `typescript-eslint` | JavaScript, TypeScript, and Astro linting |
-| `prettier`, `prettier-plugin-astro`, `prettier-plugin-tailwindcss` | Formatting Astro, TypeScript, and Tailwind classes |
+| Package                                                            | Purpose                                                        |
+| ------------------------------------------------------------------ | -------------------------------------------------------------- |
+| `astro`                                                            | Static site generation and Astro components                    |
+| `tailwindcss`                                                      | Utility-first styling                                          |
+| `@tailwindcss/vite`                                                | Tailwind CSS 4 integration with Vite                           |
+| `gsap`, `split-type`                                               | Animation and text-splitting libraries declared by the project |
+| `typescript`                                                       | TypeScript language and compiler                               |
+| `vitest`                                                           | Unit test runner                                               |
+| `eslint`, `eslint-plugin-astro`, `typescript-eslint`               | JavaScript, TypeScript, and Astro linting                      |
+| `prettier`, `prettier-plugin-astro`, `prettier-plugin-tailwindcss` | Formatting Astro, TypeScript, and Tailwind classes             |
 
 ## Useful commands
 
-| Command | Description |
-| --- | --- |
-| `npm run dev` | Start the local development server |
-| `npm run build` | Build the static site into `dist/` |
-| `npm run preview` | Preview the production build locally |
-| `npm run check` | Run Astro and TypeScript diagnostics |
-| `npm run lint` | Run ESLint |
-| `npm test` | Run Vitest tests |
-| `npm run format` | Format project files with Prettier |
+| Command                | Description                              |
+| ---------------------- | ---------------------------------------- |
+| `npm run dev`          | Start the local development server       |
+| `npm run build`        | Build the static site into `dist/`       |
+| `npm run preview`      | Preview the production build locally     |
+| `npm run check`        | Run Astro and TypeScript diagnostics     |
+| `npm run lint`         | Run ESLint                               |
+| `npm test`             | Run Vitest tests                         |
+| `npm run format`       | Format project files with Prettier       |
 | `npm run format:check` | Check formatting without modifying files |
 
 Before opening a pull request, run the checks that CI uses:
