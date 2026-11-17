@@ -1,17 +1,13 @@
 ---
 import { getLangFromUrl, useTranslations, withBase } from '../i18n/utils';
 import LangPicker from './LangPicker.astro';
-import '../scripts/navigation-controller';
 
 const pathname = Astro.url.pathname;
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const getNavLinkStyle = (path: string) => {
-  return pathname.endsWith(`/${path}`) ? 'active-link' : '';
-};
-
-const isCurrentPage = (path: string) => pathname.endsWith(`/${path}`);
+const isCurrentPage = (path: string) =>
+  pathname.trim().endsWith(`/${path.trim()}`);
 ---
 
 <navigation-controller>
@@ -54,30 +50,30 @@ const isCurrentPage = (path: string) => pathname.endsWith(`/${path}`);
     <ul
       class='z-100 flex h-full flex-col items-start justify-center gap-4 pl-4 md:h-auto md:flex-row md:items-end md:justify-end md:gap-6 lg:pl-0'
     >
-      <li class=''>
+      <li>
         <a
           href={withBase(`/${lang}/areas`)}
-          class:list={getNavLinkStyle('areas')}
+          class:list={[isCurrentPage('areas') && 'active-link']}
           aria-current={isCurrentPage('areas') ? 'page' : undefined}
           class='leading-0'
         >
           {t('nav.areas')}
         </a>
       </li>
-      <li class=''>
+      <li>
         <a
           href={withBase(`/${lang}/about`)}
-          class:list={getNavLinkStyle('about')}
+          class:list={[isCurrentPage('about') && 'active-link']}
           aria-current={isCurrentPage('about') ? 'page' : undefined}
           class='leading-0'
         >
           {t('nav.biography')}
         </a>
       </li>
-      <li class=''>
+      <li>
         <a
           href={withBase(`/${lang}/contact`)}
-          class:list={getNavLinkStyle('contact')}
+          class:list={[isCurrentPage('contact') && 'active-link']}
           aria-current={isCurrentPage('contact') ? 'page' : undefined}
           class='leading-0'
         >
