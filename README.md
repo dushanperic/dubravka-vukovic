@@ -10,8 +10,6 @@ A multilingual, statically generated website for attorney Dubravka Vuković. The
 - **Vitest** runs unit tests for shared utilities.
 - **ESLint** and **Prettier** provide linting and formatting.
 
-The project also declares **GSAP** and **SplitType** as animation-related runtime dependencies.
-
 ## Getting started
 
 Use Node.js 22. The current Astro version requires Node.js 22.23.4 or newer.
@@ -45,16 +43,15 @@ The site URL and GitHub Pages base path are configured in `astro.config.mjs`. Th
 
 ## Core dependencies
 
-| Package                                                            | Purpose                                                        |
-| ------------------------------------------------------------------ | -------------------------------------------------------------- |
-| `astro`                                                            | Static site generation and Astro components                    |
-| `tailwindcss`                                                      | Utility-first styling                                          |
-| `@tailwindcss/vite`                                                | Tailwind CSS 4 integration with Vite                           |
-| `gsap`, `split-type`                                               | Animation and text-splitting libraries declared by the project |
-| `typescript`                                                       | TypeScript language and compiler                               |
-| `vitest`                                                           | Unit test runner                                               |
-| `eslint`, `eslint-plugin-astro`, `typescript-eslint`               | JavaScript, TypeScript, and Astro linting                      |
-| `prettier`, `prettier-plugin-astro`, `prettier-plugin-tailwindcss` | Formatting Astro, TypeScript, and Tailwind classes             |
+| Package                                                            | Purpose                                            |
+| ------------------------------------------------------------------ | -------------------------------------------------- |
+| `astro`                                                            | Static site generation and Astro components        |
+| `tailwindcss`                                                      | Utility-first styling                              |
+| `@tailwindcss/vite`                                                | Tailwind CSS 4 integration with Vite               |
+| `typescript`                                                       | TypeScript language and compiler                   |
+| `vitest`                                                           | Unit test runner                                   |
+| `eslint`, `eslint-plugin-astro`, `typescript-eslint`               | JavaScript, TypeScript, and Astro linting          |
+| `prettier`, `prettier-plugin-astro`, `prettier-plugin-tailwindcss` | Formatting Astro, TypeScript, and Tailwind classes |
 
 ## Useful commands
 
