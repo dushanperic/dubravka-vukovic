@@ -24,16 +24,14 @@ const isCurrentPage = (path: string) =>
       class='h-8 w-8 fill-none stroke-current stroke-2 [stroke-linecap:round]'
       viewBox='0 0 24 24'
     >
-      <!-- Top Line: Morphs directly from y=8.5 to diagonal (\) -->
       <path
         d='M 4,8.5 L 20,8.5'
-        class="transition-[d] duration-300 ease-[cubic-bezier(0.68,-0.55,0.27,1.55)] group-aria-expanded:[d:path('M_6,6_L_18,18')]"
+        class='navigation-menu-line navigation-menu-line-top'
       ></path>
 
-      <!-- Bottom Line: Morphs directly from y=15.5 to diagonal (/) -->
       <path
         d='M 4,15.5 L 20,15.5'
-        class="transition-[d] duration-300 ease-[cubic-bezier(0.68,-0.55,0.27,1.55)] group-aria-expanded:[d:path('M_6,18_L_18,6')]"
+        class='navigation-menu-line navigation-menu-line-bottom'
       ></path>
     </svg>
   </button>

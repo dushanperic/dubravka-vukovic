@@ -34,9 +34,18 @@ test('Opens the mobile navigation and navigates to a page', async ({
     name: 'Toggle navigation menu',
   });
 
+  const topLine = menuButton.locator('.navigation-menu-line-top');
+
   await expect(menuButton).toHaveAttribute('aria-expanded', 'false');
   await menuButton.click();
   await expect(menuButton).toHaveAttribute('aria-expanded', 'true');
+  await expect
+    .poll(() => topLine.evaluate((element) => getComputedStyle(element).transform))
+    .not.toBe('none');
+
+  await page.keyboard.press('Escape');
+  await expect(menuButton).toHaveAttribute('aria-expanded', 'false');
+  await menuButton.click();
 
   const navigation = page.getByRole('navigation', {
     name: 'Primary navigation',

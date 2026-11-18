@@ -50,6 +50,21 @@ html.dark nav ul {
   @apply bg-(--dark-background);
 }
 
+.navigation-menu-line {
+  transform-box: fill-box;
+  transform-origin: center;
+
+  @apply transition-all;
+}
+
+button[aria-expanded='true'] .navigation-menu-line-top {
+  transform: translateY(3.5px) rotate(45deg);
+}
+
+button[aria-expanded='true'] .navigation-menu-line-bottom {
+  transform: translateY(-3.5px) rotate(-45deg);
+}
+
 main a,
 footer a {
   @apply decoration-1 transition-colors hover:underline hover:decoration-(--primary-brand);
