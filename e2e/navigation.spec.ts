@@ -40,7 +40,9 @@ test('Opens the mobile navigation and navigates to a page', async ({
   await menuButton.click();
   await expect(menuButton).toHaveAttribute('aria-expanded', 'true');
   await expect
-    .poll(() => topLine.evaluate((element) => getComputedStyle(element).transform))
+    .poll(() =>
+      topLine.evaluate((element) => getComputedStyle(element).transform),
+    )
     .not.toBe('none');
 
   await page.keyboard.press('Escape');

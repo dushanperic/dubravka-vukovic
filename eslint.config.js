@@ -1,9 +1,10 @@
 import js from '@eslint/js';
 import astro from 'eslint-plugin-astro';
+import { defineConfig } from 'eslint/config';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
-export default tseslint.config(
+export default defineConfig([
   {
     ignores: ['.astro/**', 'dist/**'],
   },
@@ -19,4 +20,4 @@ export default tseslint.config(
       },
     },
   },
-);
+]);
