@@ -8,6 +8,7 @@ import { ClientRouter } from 'astro:transitions';
 import BackgroundOverlay from '../components/BackgroundOverlay.astro';
 import LangPicker from '../components/LangPicker.astro';
 import Container from '../components/ui/Container.astro';
+
 import {
   LAYOUT_TYPE_KEY,
   layoutTwClass,
@@ -36,7 +37,7 @@ const {
   title,
   pageTitle,
   description = 'Advokat Dubravka Vuković website',
-  image,
+  image = '/og-image.jpg',
   layout,
   additionalHeadContent,
 } = Astro.props as ExtendedProps;
